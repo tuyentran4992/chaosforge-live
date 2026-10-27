@@ -4,38 +4,38 @@
  */
 window.DASHBOARD_DATA = {
   project: "ChaosForge Live (Codex × TwitchCon)",
-  updatedAt: "2026-10-27 23:25",
+  updatedAt: "2026-10-28 00:30",
 
   decisions: [
     {
-      id: "dec-006",
-      title: "Nghiệm thu Toàn diện Sprint 02 (Code Delivery) — 100% Tiêu chí Đạt PASS",
-      recommendation: "Nghiệm thu cả 3 user stories (us-006, us-007, us-008) sau khi 36/36 tests passed, 2 reviewers PASS, và Lead-Code xác minh thực chạy 95 FPS trên browser/OBS.",
-      impact: "Hoàn tất trọn vẹn sản phẩm ChaosForge Live theo đúng cam kết Devpost, lưu đầy đủ Primary Codex Session ID và sẵn sàng cho giai đoạn release.",
-      link: "../reports/2026-10-27-sprint-02-code-completed.md"
+      id: "dec-007",
+      title: "Mở Sprint 03 (Release Validation & Đóng gói Bài nộp Devpost)",
+      recommendation: "Mở Sprint 03 bao gồm us-009 (Kiểm thử QA E2E & Release Checklist) và us-010 (Kịch bản Video Demo 2 phút & Bộ nội dung nộp bài Devpost). Chưa điều phối agent theo yêu cầu người dùng.",
+      impact: "Chuẩn bị đầy đủ tài liệu chất lượng cao để nộp bài trước hạn 02/11/2026 2:00 PM PST.",
+      link: "../../specs/roadmap/phase-02/sprints/sprint-03/SPRINT.md"
     }
   ],
 
   newThings: [
     {
-      title: "Ứng dụng ChaosForge Live đã sẵn sàng chạy thật trên localhost:3000 (95 FPS, 100% English UI)",
-      howToTry: "Chạy `npm start` rồi mở `http://127.0.0.1:3000` để trải nghiệm Virtual OBS Stage, 500-Viewer Crowd Simulator và Spacebar Panic Clear.",
-      link: "../reports/2026-10-27-sprint-02-code-completed.md"
+      title: "Đã khắc phục hoàn toàn 2 feedback UX (Bypass Unikey cho WASD, chống cuộn trang, nút Disconnect)",
+      howToTry: "F5 lại trang http://127.0.0.1:3000 để lái tàu bằng WASD mượt mà và thử kết nối/ngắt kết nối Twitch.",
+      link: "../../specs/roadmap/phase-02/sprints/sprint-02/SPRINT.md"
     },
     {
-      title: "Đã lưu chính thức Primary Codex Session ID (01a17cfb-d16d-7fa3-a6e6-9b6846ea3cc2)",
-      howToTry: "Xem chi tiết Session ID và 3 Chat IDs trong README.md hoặc MISSION.md.",
-      link: "../../specs/MISSION.md"
+      title: "Đã mở Sprint 03: Kiểm thử QA & Đóng gói bài nộp Devpost",
+      howToTry: "Xem chi tiết mục tiêu Sprint 03 tại SPRINT.md và hai user stories us-009, us-010.",
+      link: "../../specs/roadmap/phase-02/sprints/sprint-03/SPRINT.md"
     }
   ],
 
   risks: [
     {
-      id: "risk-006",
-      title: "Chuẩn bị video demo 2 phút và tài liệu nộp bài Devpost trước hạn 02/11/2026",
-      symptom: "Sản phẩm code đã xong hoàn chỉnh; bước tiếp theo là đóng gói video demo và hoàn thiện form Devpost.",
+      id: "risk-007",
+      title: "Chuẩn bị video demo 2 phút và hoàn thiện form Devpost trước hạn 02/11/2026",
+      symptom: "Sản phẩm code đã nghiệm thu hoàn tất; cần quay video demo và hoàn thiện bài viết Devpost.",
       severity: "low",
-      link: "../reports/2026-10-27-sprint-02-code-completed.md"
+      link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-010.md"
     }
   ],
 
@@ -121,6 +121,26 @@ window.DASHBOARD_DATA = {
               link: "../../specs/roadmap/phase-02/sprints/sprint-02/stories/us-008.md"
             }
           ]
+        },
+        {
+          id: "sprint-03",
+          title: "Kiểm thử QA E2E & Đóng gói Bài nộp Devpost",
+          kind: "release-validation",
+          status: "in-progress",
+          stories: [
+            {
+              id: "us-009",
+              title: "Kiểm thử E2E QA, Release Checklist & Xác minh Môi trường Sạch",
+              status: "todo",
+              link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-009.md"
+            },
+            {
+              id: "us-010",
+              title: "Kịch bản Video Demo 2 Phút & Bộ Nội dung Nộp bài Devpost Hoàn chỉnh",
+              status: "todo",
+              link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-010.md"
+            }
+          ]
         }
       ]
     }
@@ -161,13 +181,13 @@ window.DASHBOARD_DATA = {
   agents: {
     "pm": {
       status: "idle",
-      task: "Đã nghiệm thu us-006, us-007, us-008 và đóng Sprint 02 (Code Delivery)",
-      link: "../reports/2026-10-27-sprint-02-code-completed.md"
+      task: "Đã mở Sprint 03 (us-009, us-010); sẵn sàng điều phối khi người dùng yêu cầu",
+      link: "../../specs/roadmap/phase-02/sprints/sprint-03/SPRINT.md"
     },
-    "lead-code": {
-      status: "idle",
-      task: "Đã hoàn tất task-sprint-02-02-code (36/36 tests pass, 95 FPS)",
-      link: "../../handoffs/task-sprint-02-02-code-01/r3/result.md"
+    "qa": {
+      status: "waiting",
+      task: "Chờ kích hoạt kiểm thử us-009 (Release Checklist & Clean Environment)",
+      link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-009.md"
     }
   }
 };
