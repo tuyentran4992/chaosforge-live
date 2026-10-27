@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Command Center — 3D Dashboard</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Bỏ qua tới nội dung</a>
+  <header class="top">
+    <div class="brand">
+      <div class="brand-badge" aria-hidden="true">3D HOLO-OFFICE</div>
+      <div>
+        <h1 id="project-title">Agent Command Center</h1>
+        <p id="updated" class="muted"></p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <label class="search">
+        <span class="sr">Tìm trong dashboard</span>
+        <input id="q" type="search" placeholder="Tìm agent, story, rủi ro, việc chờ..." autocomplete="off">
+      </label>
+      <div class="toolbar" role="toolbar" aria-label="Điều khiển chế độ xem">
+        <button id="btn-demo" class="chip chip-glow" type="button" aria-pressed="false">⚡ Xem thử Demo 3D</button>
+        <button id="btn-view-mode" class="chip" type="button" aria-pressed="false">Chế độ 2D List</button>
+        <button id="btn-reset-3d" class="chip" type="button">Reset góc nhìn</button>
+      </div>
+    </div>
+  </header>
+  <div id="banner" role="status"></div>
+  <main id="main">
+    <section id="summary" class="summary" aria-label="Tóm tắt chỉ số"></section>
+    <nav id="zone-nav" class="chips zone-bar" aria-label="Chọn phân khu văn phòng 3D"></nav>
+    <div id="workspace" class="workspace mode-3d">
+      <section id="stage-3d" class="stage-3d" aria-label="Văn phòng ảo 3D của các Agent">
+        <div class="stage-frame">
+          <canvas id="office-canvas" aria-label="Không gian 3D tương tác của 13 Agent trong 5 phân khu"></canvas>
+          <div class="stage-legend" aria-hidden="true">
+            <span><i class="dot dot-working"></i>Đang chạy</span>
+            <span><i class="dot dot-review"></i>Review / Cần quyết</span>
+            <span><i class="dot dot-pass"></i>Đạt chuẩn</span>
+            <span><i class="dot dot-blocked"></i>Bị chặn</span>
+            <span><i class="dot dot-idle"></i>Sẵn sàng</span>
+          </div>
+        </div>
+        <div id="inspector" class="inspector" aria-live="polite"></div>
+      </section>
+      <div id="content" class="hud-content"></div>
+    </div>
+  </main>
+  <noscript><p class="banner banner-warn">Cần bật JavaScript để xem dashboard 3D.</p></noscript>
+  <script src="data.js"></script>
+  <script src="lib.js"></script>
+  <script src="agents-model.js"></script>
+  <script src="scene3d-render.js"></script>
+  <script src="scene3d-controller.js"></script>
+  <script src="sections-attention.js"></script>
+  <script src="sections-tracking.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

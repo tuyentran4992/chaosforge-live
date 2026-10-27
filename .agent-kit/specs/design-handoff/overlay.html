@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>ChaosForge Live — OBS Browser Source</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Transparent browser-source surface — no page chrome, no grid. */
+  html, body {
+    background: transparent !important;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  body::before { display: none !important; }
+  #obsMount { position: fixed; inset: 0; }
+</style>
+</head>
+<body>
+<div id="obsMount" aria-label="Lớp phủ phát sóng ChaosForge Live"></div>
+
+<script src="overlay.js"></script>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   Standalone demo driver for the OBS browser source.
+   Cycles idle → voting → compiling → active forever, so the overlay
+   is never empty during a show. Query params:
+     ?state=idle|voting|compiling|active|panic|blocked
+     ?guide=1
+   Hotkeys (while this page has focus): G = safe-zone guide,
+   P = panic clear, N = skip to next phase.
+   ──────────────────────────────────────────────────────────────── */
+(function () {
+  'use strict';
+
+  var mount = document.getElementById('obsMount');
+  if (!mount || !window.ChaosOverlay) return;
+
+  var params = new URLSearchParams(location.search);
+  var guideOn = params.get('guide') === '1';
+  var ov = new ChaosOverlay(mount, {
+    getPlayerRect: function () { return null; },
+    onEvent: function () {},
+    onPlayerHit: function () {}
+  });
+  ov.setGuide(guideOn);
+
+  var USERS = ['nova_blitz', 'mint_chip', 'tuxedocat', 'banhmi_99', 'pixelpho', 'ducklord', 'shardqueen', 'moonlit_vn'];
+  var IDEAS = [
+    'Mưa vịt cao su nổ tung theo emote LUL',
+    'Đảo ngược trọng lực + Boss mèo bắn laser',
+    'Khiên phản đòn 360° theo nhịp chat !shield',
+    'Kéo co boss giữa 2 streamer',
+    'Mưa thiên thạch pixel theo từng dòng chat',
+    'Vòng xoáy shard tím xoay quanh tâm màn hình'
+  ];
+
+  var phase = 'idle';
+  var left = 4;
+  var pollDuration = 15;
+  var ideas = [];
+  var patch = null;
+  var pct = 0;
+  var round = 0;
+
+  function rand(a, b) { return a + Math.random() * (b - a); }
+  function randInt(a, b) { return Math.floor(rand(a, b + 1)); }
+  function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+
+  function makeIdeas() {
+    var pool = IDEAS.slice();
+    for (var i = pool.length - 1; i > 0; i--) {
+      var j = randInt(0, i);
+      var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+    }
+    round++;
+    return pool.slice(0, 3).map(function (text, idx) {
+      return { id: 'p' + round + '-' + idx, text: text, author: pick(USERS), votes: rand(8, 26), rate: rand(3, 8) };
+    });
+  }
+
+  function payload() {
+    var sorted = ideas.slice().sort(function (a, b) { return b.votes - a.votes; });
+    var total = sorted.reduce(function (s, i) { return s + i.votes; }, 0);
+    return {
+      ideas: sorted.map(function (i) {
+        return {
+          id: i.id, text: i.text, author: i.author,
+          pct: total ? i.votes / total * 100 : 0,
+          rate: i.rate
+        };
+      }),
+      totalVotes: total,
+      voteRate: 52 + Math.random() * 26,
+      remaining: Math.max(0, left),
+      duration: pollDuration
+    };
+  }
+
+  function makePatch(prompt) {
+    var t = prompt.toLowerCase();
+    var p = {
+      name: 'MƯA THIÊN THẠCH', protocol: 'VẬT LÝ · RƠI', spawn: 'meteor', base: 18,
+      duration: randInt(30, 45), tags: ['METEOR'],
+      ast: { entity: 'meteor_stream', gravity: 0.4, collision: 'bounce/elastic', spawn_zone: 'edge_ring', sfx: 'square/blip' }
+    };
+    if (t.indexOf('gà') !== -1 || t.indexOf('vịt') !== -1 || t.indexOf('duck') !== -1) {
+      p.name = 'BÃO VỊT CAO SU'; p.protocol = 'NẢY · VẬT LÝ'; p.spawn = 'duck'; p.base = 22;
+      p.ast = { entity: 'rubber_duck', gravity: 0.16, collision: 'bounce/elastic', spawn_zone: 'edge_ring', sfx: 'square/squeak' };
+    } else if (t.indexOf('mèo') !== -1 || t.indexOf('boss') !== -1) {
+      p.name = 'BOSS MÈO · LASER'; p.protocol = 'BOSS · TRỌNG LỰC'; p.spawn = 'cat'; p.base = 16; p.duration = randInt(30, 45);
+      p.ast = { entity: 'cat_boss', gravity: -0.18, collision: 'beam/seek', spawn_zone: 'edge_ring', sfx: 'sawtooth/beam' };
+    } else if (t.indexOf('khiên') !== -1 || t.indexOf('shield') !== -1) {
+      p.name = 'KHIÊN PHẢN ĐÒN 360°'; p.protocol = 'QUỸ ĐẠO · PHẢN ĐÒN'; p.spawn = 'shield'; p.base = 16;
+      p.ast = { entity: 'orbit_shield', gravity: 0, collision: 'orbit/parry', spawn_zone: 'player_orbit', sfx: 'triangle/ping' };
+    } else if (t.indexOf('raid') !== -1 || t.indexOf('tug') !== -1) {
+      p.name = 'KÉO CO RAID'; p.protocol = 'ĐỐI KHÁNG · KÉO'; p.spawn = 'tug'; p.base = 14;
+      p.ast = { entity: 'tug_boss', gravity: 0, collision: 'tension/pull', spawn_zone: 'edge_ring', sfx: 'square/drum' };
+    } else if (t.indexOf('shard') !== -1 || t.indexOf('xoáy') !== -1) {
+      p.name = 'XOÁY SHARD'; p.protocol = 'QUỸ ĐẠO · XOÁY'; p.spawn = 'shard'; p.base = 24;
+      p.ast = { entity: 'shard_vortex', gravity: 0.05, collision: 'orbit/soft', spawn_zone: 'edge_ring', sfx: 'triangle/spark' };
+    }
+    p.author = '@' + pick(USERS);
+    return p;
+  }
+
+  function startIdle(wait) {
+    phase = 'idle';
+    left = wait || 5;
+    ov.setState('idle');
+  }
+
+  function startVote() {
+    pct = 0;
+    phase = 'voting';
+    left = pollDuration = 15;
+    ideas = makeIdeas();
+    ov.setState('voting');
+    ov.updatePoll(payload());
+  }
+
+  function startCompile() {
+    var winner = ideas.slice().sort(function (a, b) { return b.votes - a.votes; })[0];
+    patch = makePatch(winner.text);
+    if (round % 4 === 0) {
+      phase = 'blocked';
+      left = 2.6;
+      ov.showBlocked('!forge ' + winner.text + ' (demo chặn ToS)');
+      return;
+    }
+    phase = 'compiling';
+    left = 2.5;
+    ov.startCompile(patch);
+  }
+
+  function startActive() {
+    var fallback = phase === 'blocked';
+    if (fallback) {
+      patch = {
+        name: 'VỊT CAO SU CỨU HỘ', protocol: 'AN TOÀN · VỊT', spawn: 'duckfallback', base: 12,
+        duration: 30, author: '@safety_duck',
+        ast: { entity: 'rubber_duck', gravity: 0.18, collision: 'bounce/elastic', spawn_zone: 'edge_ring', sfx: 'square/squeak' }
+      };
+      ov.startCompile(patch);
+      phase = 'compiling';
+      left = 1.8;
+      return;
+    }
+    phase = 'active';
+    ov.activate(patch);
+    left = patch.duration;
+  }
+
+  function jump(state) {
+    if (state === 'voting') { startVote(); return; }
+    if (state === 'compiling') { if (!ideas.length) ideas = makeIdeas(); patch = makePatch(pick(IDEAS)); ov.startCompile(patch); phase = 'compiling'; left = 2.5; return; }
+    if (state === 'active') { if (!patch) patch = makePatch(pick(IDEAS)); ov.activate(patch); phase = 'active'; left = patch.duration; return; }
+    if (state === 'panic') { ov.panic(); phase = 'panic'; left = 2.4; return; }
+    if (state === 'blocked') { ov.showBlocked('!forge prompt không an toàn (demo chặn)'); phase = 'blocked'; left = 2.6; return; }
+    startIdle(5);
+  }
+
+  document.addEventListener('keydown', function (e) {
+    var k = e.key.toLowerCase();
+    if (k === 'g') { guideOn = !guideOn; ov.setGuide(guideOn); }
+    if (k === 'p') jump('panic');
+    if (k === 'n') {
+      if (phase === 'idle') startVote();
+      else if (phase === 'voting') startCompile();
+      else if (phase === 'compiling' || phase === 'blocked') startActive();
+      else startIdle(1);
+    }
+  });
+
+  setInterval(function () {
+    if (document.hidden) return;
+
+    if (phase === 'voting') {
+      left -= 0.1;
+      ideas.forEach(function (i) { i.votes += i.rate * 0.1 * (0.7 + Math.random()); });
+      pct += 0.1;
+      if (pct >= 0.25) { pct = 0; ov.updatePoll(payload()); }
+      if (left <= 0) { left = 0; ov.updatePoll(payload()); startCompile(); }
+      return;
+    }
+
+    if (phase === 'compiling') {
+      left -= 0.1;
+      if (left <= 0) { startActive(); }
+      return;
+    }
+
+    if (phase === 'active') {
+      left -= 0.1;
+      ov.setRemaining(Math.max(0, left), patch ? patch.duration : 35);
+      if (Math.random() < 0.35) ov.bumpCombo(randInt(1, 3));
+      if (left <= 0) startIdle(6);
+      return;
+    }
+
+    if (phase === 'blocked' || phase === 'panic') {
+      left -= 0.1;
+      if (left <= 0) {
+        if (phase === 'blocked') startActive();
+        else startIdle(5);
+      }
+      return;
+    }
+
+    left -= 0.1;
+    if (left <= 0) startVote();
+  }, 100);
+
+  var initial = params.get('state');
+  if (initial) jump(initial);
+  else startIdle(4);
+})();
+</script>
+</body>
+</html>
