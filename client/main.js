@@ -11,6 +11,7 @@ import { connectTwitch } from './chat/irc.js';
 import { parseCommand } from './chat/parse.js';
 import { simulateCrowd } from './chat/simulator.js';
 import { wireRaid } from './ui/raid-controls.js';
+import { wireCrowdTabs } from './ui/crowd-tabs.js';
 import { createSound } from './audio/sfx.js';
 import { makeObsUrl, validStudioId } from './ui/obs-link.js';
 import { encodePoll } from './round/poll.js';
@@ -184,32 +185,29 @@ $('#hypeBtn').addEventListener('click', () => {
   crowdStop = simulateCrowd(addChat);
   round.startVoting();
 });
-function selectTab(button) {
-  for (const tab of document.querySelectorAll('.crowd-tab')) {
-    const selected = tab === button;
-    tab.classList.toggle('is-on', selected);
-    tab.setAttribute('aria-selected', String(selected));
-    tab.tabIndex = selected ? 0 : -1;
-  }
-  for (const panel of document.querySelectorAll('.crowd-panel')) panel.hidden = panel.dataset.panel !== button.dataset.tab;
-}
-for (const button of document.querySelectorAll('.crowd-tab')) {
-  button.addEventListener('click', () => selectTab(button));
-  button.addEventListener('keydown', (event) => {
-    if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
-    event.preventDefault();
-    const next = button.dataset.tab === 'sim' ? $('[data-tab="live"]') : $('[data-tab="sim"]');
-    selectTab(next);
-    next.focus();
-  });
-}
+wireCrowdTabs();
 $('#connectTwitch').addEventListener('click', () => {
+  if (twitch) {
+    twitch.close();
+    twitch = null;
+    $('#connectTwitch').textContent = 'CONNECT';
+    $('#liveStatus').textContent = 'DISCONNECTED';
+    return;
+  }
   try {
-    twitch?.close();
     twitch = connectTwitch($('#twitchChannel').value,
       (event) => addChat(event.user, event.text, $('#liveFeed')),
-      (status) => { $('#liveStatus').textContent = status; });
-  } catch { $('#liveStatus').textContent = 'INVALID CHANNEL'; }
+      (status) => {
+        $('#liveStatus').textContent = status;
+        const live = status.startsWith('CONNECTED TO');
+        $('#connectTwitch').textContent = live ? 'DISCONNECT' : 'CONNECT';
+        if (!live) twitch = null;
+      });
+  } catch {
+    twitch = null;
+    $('#connectTwitch').textContent = 'CONNECT';
+    $('#liveStatus').textContent = 'INVALID CHANNEL';
+  }
 });
 for (const button of document.querySelectorAll('#pilotMode button')) button.addEventListener('click', () => {
   arcade.setManual(button.dataset.mode === 'manual');

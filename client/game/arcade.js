@@ -11,8 +11,23 @@ export function startArcade(canvas, { targets = () => [], hit = () => {} } = {})
   let last = performance.now();
   const stars = Array.from({ length: 90 }, () => ({ x: Math.random() * 960, y: Math.random() * 540,
     speed: 0.2 + Math.random() * 0.6 }));
-  window.addEventListener('keydown', (event) => keys.add(event.key.toLowerCase()));
-  window.addEventListener('keyup', (event) => keys.delete(event.key.toLowerCase()));
+  const moveKeys = new Set(['w', 'a', 's', 'd', 'keyw', 'keya', 'keys', 'keyd',
+    'arrowup', 'arrowdown', 'arrowleft', 'arrowright']);
+  window.addEventListener('keydown', (event) => {
+    const key = event.key?.toLowerCase();
+    const code = event.code?.toLowerCase();
+    if (key) keys.add(key);
+    if (code) keys.add(code);
+    if (manual && (moveKeys.has(key) || moveKeys.has(code)) &&
+        !/^(INPUT|TEXTAREA|SELECT|BUTTON)$/i.test(event.target?.tagName || '')) {
+      event.preventDefault();
+    }
+  });
+  window.addEventListener('keyup', (event) => {
+    if (event.key) keys.delete(event.key.toLowerCase());
+    if (event.code) keys.delete(event.code.toLowerCase());
+  });
+  window.addEventListener('blur', () => keys.clear());
   function frame(time) {
     const delta = Math.min((time - last) / 1000, 0.05);
     last = time;
@@ -37,8 +52,12 @@ export function startArcade(canvas, { targets = () => [], hit = () => {} } = {})
       ctx.fillRect(star.x, star.y, 1.5, 2.5);
     }
     if (manual) {
-      player.x += 240 * delta * (Number(keys.has('d') || keys.has('arrowright')) - Number(keys.has('a') || keys.has('arrowleft')));
-      player.y += 240 * delta * (Number(keys.has('s') || keys.has('arrowdown')) - Number(keys.has('w') || keys.has('arrowup')));
+      const isUp = keys.has('w') || keys.has('keyw') || keys.has('arrowup');
+      const isDown = keys.has('s') || keys.has('keys') || keys.has('arrowdown');
+      const isLeft = keys.has('a') || keys.has('keya') || keys.has('arrowleft');
+      const isRight = keys.has('d') || keys.has('keyd') || keys.has('arrowright');
+      player.x += 360 * delta * (Number(isRight) - Number(isLeft));
+      player.y += 360 * delta * (Number(isDown) - Number(isUp));
       player.x = Math.max(15, Math.min(945, player.x));
       player.y = Math.max(15, Math.min(525, player.y));
     } else {
@@ -81,5 +100,11 @@ export function startArcade(canvas, { targets = () => [], hit = () => {} } = {})
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
-  return { setManual(value) { manual = value; }, clear: combat.clear };
+  return {
+    setManual(value) {
+      manual = value;
+      if (!value) keys.clear();
+    },
+    clear: combat.clear,
+  };
 }

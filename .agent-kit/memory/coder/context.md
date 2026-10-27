@@ -1,5 +1,8 @@
 # Context — coder
 
-- Instance `/root/coder`; task `task-sprint-02-02-code`, handoff `task-sprint-02-02-code-coder-01`, revision `r8` (superseding `r7`).
-- Status complete, source verified; result `.agent-kit/handoffs/task-sprint-02-02-code-coder-01/r8/result.md`; snapshot and line counts `.agent-kit/memory/coder/refs/task-sprint-02-02-code/evidence-r8.md`.
-- OBS 340x352 px poll layout fine-tuned in `client/styles/main.css`: eliminated 1px pseudo-element border expansion (`.ov-poll::after { right: 0; bottom: 0; }`), verified in Microsoft Edge with 3x160 char options (`scrollH = 350px <= clientH = 350px`, `scrollW = 338px <= clientW = 338px`). 36/36 tests passed. All 72 product files <= 250 physical lines.
+- Instance `/root/coder`; task `task-sprint-02-02-code`, handoff `task-sprint-02-02-code-coder-01`, revision `r9` (superseding `r8`).
+- Status complete, source verified; result `.agent-kit/handoffs/task-sprint-02-02-code-coder-01/r9/result.md`; snapshot and line counts `.agent-kit/memory/coder/refs/task-sprint-02-02-code/evidence-r9.md`.
+- UX enhancements implemented:
+  1. Arcade keyboard navigation (`client/game/arcade.js`): arrow keys prevent browser scroll in manual mode; physical key code detection (`keyw`, `keya`, `keys`, `keyd`) added for instantaneous responsiveness with Vietnamese Telex/Unikey IME; window blur key clearing added; pilot speed tuned to 360 px/s.
+  2. Twitch CONNECT / DISCONNECT button toggle (`client/chat/irc.js` & `client/main.js`): socket.onopen broadcasts `CONNECTED TO #...`; clicking button disconnects existing socket and resets UI; status callback toggles button label between CONNECT and DISCONNECT.
+  3. All 73 product files strictly <= 250 physical lines (`client/main.js` at 236 lines with `client/ui/crowd-tabs.js` extracted). 36/36 tests passed.

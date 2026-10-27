@@ -10,7 +10,7 @@ export function connectTwitch(channel, onMessage, onStatus) {
     socket.send('PASS SCHMOOPIIE');
     socket.send(`NICK justinfan${Math.floor(10000 + Math.random() * 900000)}`);
     socket.send(`JOIN #${name}`);
-    onStatus('SOCKET OPEN · JOIN REQUESTED');
+    onStatus('CONNECTED TO #' + name.toUpperCase());
   };
   socket.onmessage = (message) => {
     for (const event of parser.push(String(message.data))) {
