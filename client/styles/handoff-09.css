@@ -1,0 +1,220 @@
+.ov-idea[data-rank="1"] .ov-idea__text { color: #fff; }
+.ov-idea__by {
+  display: block;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: rgba(216, 180, 254, 0.75);
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ov-idea__bar {
+  display: block;
+  height: 6px;
+  margin-top: 7px;
+  background: rgba(2, 6, 14, 0.65);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  overflow: hidden;
+}
+.ov-idea__bar i {
+  display: block;
+  height: 100%;
+  width: 10%;
+  background: linear-gradient(90deg, #7c3aed, var(--purple-2));
+  box-shadow: 0 0 12px rgba(145, 70, 255, 0.6);
+  transition: width 0.28s var(--ease);
+}
+.ov-idea[data-rank="1"] .ov-idea__bar i { background: linear-gradient(90deg, #9146ff, #e9d5ff); }
+.ov-idea__num { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 2px; min-width: 54px; }
+.ov-idea__num b { font-family: var(--mono); font-size: 20px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: #fff; }
+.ov-idea__num em { font-style: normal; font-family: var(--mono); font-size: 11px; color: var(--amber-2); letter-spacing: 0.02em; }
+
+/* ── Compiler (bottom left) ── */
+.ov-compiler {
+  position: absolute;
+  left: 28px;
+  bottom: 28px;
+  width: 420px;
+  color: var(--green-2);
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  opacity: 0;
+  transform: translateY(150%);
+  transition: opacity 0.2s var(--ease), transform 0.34s var(--ease);
+}
+.ov[data-state="compiling"] .ov-compiler { opacity: 1; transform: none; }
+.ov-compiler__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: rgba(203, 213, 225, 0.65);
+  background: rgba(2, 6, 14, 0.35);
+}
+.ov-dots { display: inline-flex; gap: 4px; }
+.ov-dots i { width: 7px; height: 7px; border-radius: 50%; background: rgba(148, 163, 184, 0.3); }
+.ov-dots i:first-child { background: rgba(239, 68, 68, 0.6); }
+.ov-dots i:nth-child(2) { background: rgba(245, 158, 11, 0.6); }
+.ov-dots i:nth-child(3) { background: rgba(52, 211, 153, 0.6); }
+.ov-compiler__badge {
+  margin-left: auto;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--green-2);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  padding: 1px 5px;
+  background: rgba(16, 163, 127, 0.1);
+}
+.ov-code {
+  margin: 0;
+  padding: 12px 16px 10px;
+  min-height: 152px;
+  font-family: var(--mono);
+  font-size: 14.5px;
+  line-height: 1.62;
+  color: #b9f5e0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-shadow: 0 0 14px rgba(52, 211, 153, 0.25);
+}
+.ov-code .k { color: #7dd3fc; }
+.ov-compiler__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 16px 12px;
+  border-top: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(2, 6, 14, 0.4);
+}
+.ov-verified {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--green-2);
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  background: rgba(16, 163, 127, 0.12);
+  padding: 4px 7px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: 0.2s;
+  white-space: nowrap;
+}
+.ov-verified.is-on { opacity: 1; transform: none; }
+.ov-deploy {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: rgba(203, 213, 225, 0.6);
+  white-space: nowrap;
+}
+.ov-deploy b { color: var(--amber-2); font-size: 16px; }
+
+/* ── Safe zone guide ── */
+.ov-safe {
+  position: absolute;
+  left: 20%;
+  top: 20%;
+  width: 60%;
+  height: 60%;
+  border: 1px dashed rgba(52, 211, 153, 0.42);
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 4;
+  box-shadow: inset 0 0 60px rgba(16, 163, 127, 0.04);
+}
+.ov[data-guide="1"] .ov-safe { opacity: 1; }
+.ov-safe::before,
+.ov-safe::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  background: rgba(52, 211, 153, 0.4);
+  transform: translate(-50%, -50%);
+}
+.ov-safe::before { width: 22px; height: 1px; }
+.ov-safe::after { width: 1px; height: 22px; }
+.ov-safe__tag {
+  position: absolute;
+  top: 10px; left: 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: rgba(110, 231, 183, 0.8);
+  background: rgba(2, 6, 14, 0.55);
+  padding: 3px 7px;
+}
+
+/* ── Flash card (panic / blocked) ── */
+.ov-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transition: opacity 0.14s var(--ease);
+}
+.ov[data-state="panic"] .ov-flash,
+.ov[data-state="blocked"] .ov-flash { opacity: 1; }
+.ov-flash__card {
+  min-width: 620px;
+  max-width: 760px;
+  padding: 30px 38px 28px;
+  text-align: center;
+  background: rgba(8, 13, 23, 0.94);
+  border: 1px solid rgba(52, 211, 153, 0.5);
+  box-shadow: 0 0 80px rgba(16, 163, 127, 0.2), 0 30px 80px rgba(0, 0, 0, 0.6);
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  backdrop-filter: blur(10px);
+  transform: translateY(8px) scale(0.98);
+  transition: transform 0.2s var(--ease);
+}
+.ov[data-state="panic"] .ov-flash__card,
+.ov[data-state="blocked"] .ov-flash__card { transform: none; }
+.ov-flash__kicker {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--green-2);
+  display: inline-block;
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  background: rgba(16, 163, 127, 0.1);
+  padding: 3px 10px;
+}
+.ov-flash__title {
+  font-size: 46px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #fff;
+  margin-top: 14px;
+}
+.ov-flash__body {
+  font-size: 16px;
+  line-height: 1.55;
+  color: rgba(203, 213, 225, 0.8);
+  margin-top: 8px;
+}
+.ov-flash__meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: rgba(203, 213, 225, 0.5);
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+.ov[data-state="blocked"] .ov-flash__card { border-color: rgba(239, 68, 68, 0.55); box-shadow: 0 0 80px rgba(239, 68, 68, 0.18), 0 30px 80px rgba(0, 0, 0, 0.6); }
+.ov[data-state="blocked"] .ov-flash__kicker { color: var(--red-2); border-color: rgba(239, 68, 68, 0.45); background: rgba(239, 68, 68, 0.1); }
+.ov[data-state="panic"] .ov-flash__title { color: #d1fae5; }
+
+/* ══════════════════════════════════════════════════════════════
+   DESIGN SYSTEM PAGE
+   ══════════════════════════════════════════════════════════════ */

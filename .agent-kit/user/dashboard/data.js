@@ -4,45 +4,38 @@
  */
 window.DASHBOARD_DATA = {
   project: "ChaosForge Live (Codex × TwitchCon)",
-  updatedAt: "2026-10-27 17:41",
+  updatedAt: "2026-10-27 23:25",
 
   decisions: [
     {
-      id: "dec-004",
-      title: "Chọn cách điều phối Sprint 02 (Code MVP 100% English UI)",
-      recommendation: "Giao Lead-Code lập Technical Plan (TECHSTACK + ARCHITECT + tách module ≤250 dòng/file) rồi dùng OpenAI Codex thực thi để lấy Primary Codex Session ID (/status).",
-      impact: "Đảm bảo kiến trúc đạt chuẩn 250 dòng/file, giao diện 100% tiếng Anh đồng nhất và có Codex Session ID hợp lệ nộp Devpost.",
-      link: "../reports/2026-10-27-design-approved-sprint-02-opened.md"
+      id: "dec-006",
+      title: "Nghiệm thu Toàn diện Sprint 02 (Code Delivery) — 100% Tiêu chí Đạt PASS",
+      recommendation: "Nghiệm thu cả 3 user stories (us-006, us-007, us-008) sau khi 36/36 tests passed, 2 reviewers PASS, và Lead-Code xác minh thực chạy 95 FPS trên browser/OBS.",
+      impact: "Hoàn tất trọn vẹn sản phẩm ChaosForge Live theo đúng cam kết Devpost, lưu đầy đủ Primary Codex Session ID và sẵn sàng cho giai đoạn release.",
+      link: "../reports/2026-10-27-sprint-02-code-completed.md"
     }
   ],
 
   newThings: [
     {
-      title: "Đã khóa quy chuẩn 100% Tiếng Anh (Unified English UI) & Commit đóng 2 Sprint đầu",
-      howToTry: "Xem yêu cầu 100% English UI tại DESIGN.md và us-006, us-007, us-008.",
-      link: "../../specs/DESIGN.md"
+      title: "Ứng dụng ChaosForge Live đã sẵn sàng chạy thật trên localhost:3000 (95 FPS, 100% English UI)",
+      howToTry: "Chạy `npm start` rồi mở `http://127.0.0.1:3000` để trải nghiệm Virtual OBS Stage, 500-Viewer Crowd Simulator và Spacebar Panic Clear.",
+      link: "../reports/2026-10-27-sprint-02-code-completed.md"
     },
     {
-      title: "Đã nghiệm thu Bộ Thiết kế ChaosForge Live (Phase 02 / Sprint 01 Done)",
-      howToTry: "Mở trực tiếp bản thiết kế chính thức (index.html, overlay.html, design-system.html) để trải nghiệm đủ 3 màn hình và 6 trạng thái vòng.",
-      link: "../../specs/design-handoff/index.html"
+      title: "Đã lưu chính thức Primary Codex Session ID (01a17cfb-d16d-7fa3-a6e6-9b6846ea3cc2)",
+      howToTry: "Xem chi tiết Session ID và 3 Chat IDs trong README.md hoặc MISSION.md.",
+      link: "../../specs/MISSION.md"
     }
   ],
 
   risks: [
     {
-      id: "risk-004",
-      title: "Bản Design Handoff hiện đang hiển thị tiếng Việt & mô phỏng tĩnh Twitch/Cross-tab",
-      symptom: "Trong Sprint 02 (us-006, us-007, us-008), cần chuyển 100% văn bản UI sang tiếng Anh và nối logic thật cho Twitch IRC, Codex AST Compiler & đồng bộ cửa sổ.",
-      severity: "medium",
-      link: "../../specs/roadmap/phase-02/sprints/sprint-02/SPRINT.md"
-    },
-    {
-      id: "risk-002",
-      title: "Bắt buộc lưu Primary Codex Session ID khi bắt đầu code Sprint 02",
-      symptom: "Nhớ gõ /status trên luồng Codex chính dùng để build dự án để điền form nộp bài trước 02/11/2026.",
-      severity: "high",
-      link: "../../specs/MISSION.md"
+      id: "risk-006",
+      title: "Chuẩn bị video demo 2 phút và tài liệu nộp bài Devpost trước hạn 02/11/2026",
+      symptom: "Sản phẩm code đã xong hoàn chỉnh; bước tiếp theo là đóng gói video demo và hoàn thiện form Devpost.",
+      severity: "low",
+      link: "../reports/2026-10-27-sprint-02-code-completed.md"
     }
   ],
 
@@ -107,24 +100,24 @@ window.DASHBOARD_DATA = {
           id: "sprint-02",
           title: "Xây dựng Core Engine, Twitch/Codex Integration & UI (100% English)",
           kind: "delivery",
-          status: "in-progress",
+          status: "done",
           stories: [
             {
               id: "us-006",
               title: "Triển khai 3 Bề mặt UI (100% English), Built-in Arcade & 2D Physics Overlay",
-              status: "todo",
+              status: "accepted",
               link: "../../specs/roadmap/phase-02/sprints/sprint-02/stories/us-006.md"
             },
             {
               id: "us-007",
               title: "Tích hợp Bộ Biên dịch OpenAI Codex Structured AST, ToS Guard & Cartridges",
-              status: "todo",
+              status: "accepted",
               link: "../../specs/roadmap/phase-02/sprints/sprint-02/stories/us-007.md"
             },
             {
               id: "us-008",
               title: "Tích hợp Twitch Chat/EventSub, Giả lập 500 Viewers & Phòng Raid 2 Streamer",
-              status: "todo",
+              status: "accepted",
               link: "../../specs/roadmap/phase-02/sprints/sprint-02/stories/us-008.md"
             }
           ]
@@ -135,17 +128,19 @@ window.DASHBOARD_DATA = {
 
   release: null,
 
-  backlog: [
-    {
-      id: "bl-003",
-      title: "Triển khai Code MVP ChaosForge Live (phase-02/sprint-02, 100% English UI) & Lưu Primary Codex Session ID",
-      state: "waiting",
-      reason: "Đang mở sprint-02 (us-006, us-007, us-008); chờ xác nhận điều phối Lead-Code / Codex.",
-      link: "../../specs/backlog/items/bl-003.md"
-    }
-  ],
+  backlog: [],
 
   reports: [
+    {
+      date: "2026-10-27",
+      title: "Nghiệm thu Hoàn thành Sprint 02 (Code Delivery) — ChaosForge Live",
+      link: "../reports/2026-10-27-sprint-02-code-completed.md"
+    },
+    {
+      date: "2026-10-27",
+      title: "Quyết định Chính sách r3: Local Fallback, ToS Guard 4 Lớp & Hiển thị Poll OBS",
+      link: "../reports/2026-10-27-sprint-02-r3-policy-decisions.md"
+    },
     {
       date: "2026-10-27",
       title: "Nghiệm thu Bộ Thiết kế ChaosForge Live, Commit Git & Mở Sprint Code",
@@ -165,14 +160,14 @@ window.DASHBOARD_DATA = {
 
   agents: {
     "pm": {
-      status: "working",
-      task: "Đã commit đóng Sprint 01 & Sprint Design, khóa yêu cầu 100% English UI cho Sprint Code",
-      link: "../reports/2026-10-27-design-approved-sprint-02-opened.md"
+      status: "idle",
+      task: "Đã nghiệm thu us-006, us-007, us-008 và đóng Sprint 02 (Code Delivery)",
+      link: "../reports/2026-10-27-sprint-02-code-completed.md"
     },
     "lead-code": {
-      status: "waiting",
-      task: "Sẵn sàng nhận brief phase-02 / sprint-02 (us-006, us-007, us-008 — 100% English UI)",
-      link: "../../specs/roadmap/phase-02/sprints/sprint-02/SPRINT.md"
+      status: "idle",
+      task: "Đã hoàn tất task-sprint-02-02-code (36/36 tests pass, 95 FPS)",
+      link: "../../handoffs/task-sprint-02-02-code-01/r3/result.md"
     }
   }
 };

@@ -39,13 +39,13 @@ For responsive web exports, treat these as a modern breakpoint system for one ad
 - Preserve accessibility semantics when converting: headings stay hierarchical, controls remain buttons/links/inputs, focus states stay visible.
 - Do not keep prototype-only annotations, frame labels, or OpenDesign chrome in the production UI.
 
-## CJX-ready UX contract
-- Use `DESIGN-MANIFEST.json` as the machine-readable map for screens, app modules, OS widgets, landing pages, tokens, interactions, and viewport checks.
-- Screen-file-first: when multiple user-facing surfaces exist, implement each HTML screen as its own route/file. Treat `index.html` as a launcher/overview when the manifest marks it that way, not as a combined final UI.
-- If `landing.html`, app screens, platform screens, or OS widget files exist, preserve those boundaries in the target app instead of merging them into one page.
-- A single self-contained `index.html` is acceptable only when the export truly contains one user-facing screen and its CSS/JS are structured enough to extract tokens, components, states, and behavior.
-- If separate `css/` or `js/` files exist, treat them as source of truth for token/component/interactions before porting to React, Vue, SwiftUI, Compose, or another target stack.
-- In-app modules/components are product UI blocks inside the app. OS widgets are home-screen/lock-screen/quick-access surfaces outside the app. Do not merge those concepts.
+## CJX-ready UX contract (Updated & Canonicalized by PM — Supersedes generic export boilerplate)
+- Use `DESIGN-MANIFEST.json` and `.agent-kit/specs/DESIGN.md` as the canonical map for screens, app modules, tokens, interactions, and viewport checks.
+- Canonical 3-HTML-Entry & Route Architecture (matching the actual exported DOM in `index.html`, `overlay.html`, and `design-system.html`):
+  1. `index.html`: The main Studio web application containing the top navigation bar, the 6-state round bar, and the three hash-routed views (`#/stage` → `#view-stage`, `#/overlay` → `#view-overlay`, `#/deck` → `#view-deck`).
+  2. `overlay.html`: The standalone transparent OBS Browser Source surface (`1920×1080`, no page chrome).
+  3. `design-system.html`: The standalone Design System v1.0 reference page.
+- Preserve modular JS/CSS separation (`client/`, `server/`, `shared/`) with each source code file ≤ 250 physical lines per project code standards while keeping the exact visual layout, CSS tokens, and behavior of the three HTML entries above.
 
 ## Color and brand contract
 - Use the exported design tokens and product/domain context as the color source of truth.
@@ -53,9 +53,9 @@ For responsive web exports, treat these as a modern breakpoint system for one ad
 - A stylesheet or design/token file was detected; inspect it for canonical color variables before choosing framework theme tokens.
 
 ## Implementation sequence for AI coding tools
-1. Open `index.html` and `DESIGN-MANIFEST.json`; identify every screen file, launcher/overview file, app module, and interaction before coding.
-2. If multiple HTML screens exist, map them to separate routes/surfaces first; do not merge `landing.html`, product app screens, platform screens, or OS widgets into one route.
-3. Extract a token table from CSS/root styles and inline styles before building framework components.
+1. Open `index.html` and `DESIGN-MANIFEST.json`; identify the 3 HTML entry points (`index.html` with `#/stage`, `#/overlay`, `#/deck`; standalone `overlay.html`; standalone `design-system.html`), app modules, and interactions before coding.
+2. Implement the 3 HTML entry points (`index.html`, `overlay.html`, `design-system.html`); inside `index.html`, preserve the 3 hash-switched views (`#/stage` → `#view-stage`, `#/overlay` → `#view-overlay`, `#/deck` → `#view-deck`). To comply with the project's ≤250 physical lines per file rule, split CSS into modular files (`client/styles/*.css`) and modularize HTML/DOM view rendering via ES modules (`client/ui/*.js`) while preserving the exact rendered DOM structure, IDs, classes, tokens, and visual geometry.
+3. Extract a token table from CSS/root styles and inline styles before building components.
 4. Build product screens and domain-specific in-app modules from largest layout regions down to controls; avoid starting with isolated atoms that lose spatial intent.
 5. Port responsive behavior across the modern viewport matrix and test each semantic breakpoint before cleanup.
 6. Port interactions and states, then replace static placeholders only with real app data or functional equivalents.
@@ -79,7 +79,7 @@ For responsive web exports, treat these as a modern breakpoint system for one ad
 
 ## Coding checklist for AI tools
 1. Inspect `index.html` and `DESIGN-MANIFEST.json` first and identify reusable components before coding.
-2. Implement each user-facing screen file as its own route/surface; keep launcher, landing, app, platform, and OS widget files separate.
+2. Implement the 3 canonical HTML entry surfaces (`index.html` hosting `#/stage`, `#/overlay`, `#/deck`; standalone `overlay.html`; standalone `design-system.html`), keeping every production `.html`, `.css`, and `.js` file ≤ 250 physical lines via clean modularization.
 3. Extract design tokens into the target stack: colors, type scale, spacing, radius, shadows, and motion.
 4. Implement layout with real 2025–2026 responsive breakpoints, fluid type/spacing, and container-query-aware component behavior; test with no horizontal overflow.
 5. Preserve interactive controls, hover/focus/pressed states, form behavior, validation, and copy actions where present.

@@ -21,13 +21,19 @@ Xây dựng **`Codex Chaos Foundry` (`ChaosForge Live`)** — nền tảng tươ
 ### Trong phạm vi (MVP 6 ngày — Hạn chót 02/11/2026 2:00 PM PST)
 1. **Core Loop 4 bước (45–60s/vòng):**
    - *Chat Pitch & Live Poll (15s):* Nhận lệnh `!forge <ý tưởng>` từ Twitch Chat thật (IRC/EventSub) hoặc Crowd Simulator, chọn 3 phương án lên bảng bình chọn `1 / 2 / 3`.
-   - *Codex Safe-Runtime Compiler (`< 2.5s`):* Biên dịch ý tưởng thắng cuộc qua **OpenAI Structured Outputs (`json_schema` AST)** kết hợp kho ~25 nguyên tử hành vi vật lý 2D (trọng lực, nảy, mưa vật thể, laser, khiên, đảo chiều...), bộ tổng hợp âm thanh 8-bit (WebAudio Synth) và 10 *Pre-warmed Cartridges* dự phòng; hiển thị cửa sổ *Codex Live Compiler Terminal* trên màn hình.
-   - *Live Execution & Crowd Control (30–45s):* Chạy hiệu ứng/Boss/mini-game 60fps trên OBS Overlay; bắt nhịp độ spam emote và lệnh chat (`!boost`, `!heal`, `!fire`) để điều khiển thời gian thực.
+   - *Codex Safe-Runtime Compiler (`< 2.5s`):* Biên dịch ý tưởng thắng cuộc qua **OpenAI Structured Outputs (`json_schema` AST)** khi cấu hình `OPENAI_API_KEY` + `COMPILER_ACCESS_TOKEN`, kết hợp bộ **Deterministic Local AST Synthesizer** (từ vựng tiếng Anh + bộ từ khóa mẫu đa ngôn ngữ có xử lý mệnh đề phủ định & tín hiệu `uncertain` rõ ràng), bộ tổng hợp âm thanh 8-bit (WebAudio Synth) và kho *Pre-warmed Cartridges* dự phòng; hiển thị cửa sổ *Codex Live Compiler Terminal* trên màn hình.
+   - *Live Execution & Crowd Control (30–45s):* Chạy hiệu ứng/Boss/mini-game 60fps trên OBS Overlay; bắt nhịp độ spam emote và lệnh chat (`!boost`, `!shield`) để điều khiển thời gian thực.
    - *2-Streamer Versus / Raid Mode & Cartridge Library:* Lưu bản vá thành thẻ bài (*Cartridge*) và gửi thử thách sang phòng streamer thứ 2 qua mã phòng.
-2. **Quản lý Codex Session ID hợp lệ:** Sử dụng OpenAI Codex để xây dựng dự án; lưu lại **Primary Codex Session ID** (lệnh `/status` trên luồng build chính) để điền form Devpost kèm danh sách các Session ID phụ trong phần mô tả dự án.
+2. **Quản lý Codex Session ID hợp lệ (Đã ghi nhận từ phiên build Codex của người dùng):**
+   - **Primary Codex Session ID (`Session`):** `01a17cfb-d16d-7fa3-a6e6-9b6846ea3cc2`
+   - **Additional Codex Chat / Subagent IDs (`Chats`):**
+     - `01a17d17-d86e-70b3-923a-7c4964624d75`
+     - `01a17d17-ccf8-7fb3-8c1f-c72b3a568739`
+     - `01a17cfe-7599-7d32-885d-bcbb2965b153`
 
 ### Ngoài phạm vi (Non-goals)
 - Không dùng `eval()` chạy mã JavaScript tự do không kiểm soát để tránh tuyệt đối lỗi crash OBS hoặc vi phạm điều khoản an toàn của Twitch.
+- Không yêu cầu bộ tổng hợp local không dùng API key (`shared/synthesize.js`) hay bộ lọc từ khóa tĩnh (`shared/safety.js`) phải hiểu mọi ngôn ngữ tự nhiên bất kỳ như một mô hình LLM đám mây; thay vào đó áp dụng kiến trúc phòng thủ nhiều lớp (Closed-World AST Whitelist + Clause Negation + Safe Uncertain Default + Mod Approval + `<100ms` Panic Clear).
 - Không yêu cầu người xem cài đặt tiện ích mở rộng hay đăng nhập tài khoản bên thứ ba mới được tương tác.
 - Không can thiệp vào bộ nhớ (memory hook) của các tựa game PC có chống gian lận (Anti-Cheat); mọi tương tác diễn ra an toàn trên lớp OBS Browser Source Overlay và Built-in Stream Arcade Arena.
 

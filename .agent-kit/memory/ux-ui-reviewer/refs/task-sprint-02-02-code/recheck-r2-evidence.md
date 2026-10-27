@@ -1,0 +1,13 @@
+# UX recheck r2 — static evidence
+
+Snapshot HEAD `5f7b2d31b6d765725b32745632e63d43e55d0b97`, tracked diff `095d984e4390280d80e6786e9fd3e012c9e33e109e29f74f08658fea215a3bd0`; 65 product paths/hashes matched before and after review.
+
+Independently ran `node --test test/round.test.js test/rooms-unit.test.js test/physics.test.js`: six tests passed, zero failed, no real network. Tests cover edge spawn, drawing operations, gravity/collision, isolated fake socket rooms, 4Hz voting/timer replacement, invalid compile response. They do not show rendered UI, prove typography/layout or actual integration timing.
+
+Static observations on current source, not browser observations:
+- `client/overlay/artwork.js` has separate drawing branches for duck, boss and star plus shield; `client/game/arcade.js` draws stars, guide rectangle, reticle, spacecraft. Real appearance/fidelity remains unobserved.
+- `client/round/controller.js:80` schedules `emitPoll` every 250ms; `client/main.js` updates stateTimer with seconds; `client/overlay/engine.js` creates three `li` elements and updates countdown, while `client/styles/main.css` overrides text overflow and HUD z-index. Actual layout for long labels remains unobserved.
+- `client/ui/raid-controls.js:12` deploys received AST and inserts receive log; `client/sync/raid.js` only receives `raid-receive` from socket; tests use socket mocks. Actual two-tab sending and resulting log remain unobserved.
+- `design-system.html:57` safe zone is a text-only card; handoff `design-system.html:226` has a diagram. Product swatches omit `Telemetry Grey` shown at handoff line 126. Eight section headings now exist, but full documented source geometry, component examples and hierarchy have not been ported; no live visual comparison.
+- `client/ui/stage.js:27` assigns tabs role, selected and controls; `client/main.js:181` updates selected/tabindex and arrow-key focus. Input `judgeError` alert at stage line 48 and validation handler `main.js:126` reveal/focus the empty error and input handler hides it. These are source observations; keyboard and screen-reader behavior not verified.
+- OBS setup `client/ui/overlay-view.js:19-21` displays and instructs `overlay.html`; studio `client/main.js:33-40` creates an individual random ID and adds `?studio=` to the link/copied URL. `client/overlay/standalone.js:5-13` uses the query ID or all-zero fallback and only attaches an aria-label when missing. Therefore following displayed literal URL yields a different channel from a newly generated Studio ID, with no visible warning. Copy button does supply the linked URL. This is a source-derived finding, not a runtime reproduction.

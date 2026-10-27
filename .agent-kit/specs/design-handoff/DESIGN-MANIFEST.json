@@ -33,23 +33,23 @@
     },
     {
       "file": "index.html",
-      "role": "launcher-overview",
-      "implementationNote": "Use this as the navigation/overview entry only; implement each linked screen file as its own route/surface."
+      "role": "studio-app-three-views",
+      "implementationNote": "Main Studio application hosting the 3 hash-routed views (#/stage -> #view-stage, #/overlay -> #view-overlay, #/deck -> #view-deck) plus topbar and 6-state round bar."
     },
     {
       "file": "overlay.html",
-      "role": "screen",
-      "implementationNote": "Preserve visual hierarchy, responsive behavior, and interactive states from this screen."
+      "role": "obs-browser-source-screen",
+      "implementationNote": "Standalone transparent 1920x1080 OBS Browser Source surface; preserve visual hierarchy, safe zone, and real-time sync with index.html."
     }
   ],
   "screenFilePolicy": {
-    "mode": "screen-file-first",
-    "entryFileRole": "launcher-overview",
+    "mode": "three-html-entries-with-hash-views",
+    "entryFileRole": "studio-app-three-views",
     "rules": [
-      "Each distinct user-facing screen or surface must be delivered and implemented as its own file/route.",
-      "If a landing page is present or requested, keep it in landing.html and do not merge it into the product app screen.",
-      "When multiple HTML screens exist, index.html is a launcher/overview only; it must not be treated as the combined final UI.",
-      "Keep product app screens, landing pages, platform screens, and OS widget surfaces separate in production code."
+      "Canonical PM Decision (supersedes generic export boilerplate): Deliver 3 distinct HTML entry surfaces matching the exported prototype:",
+      "1. index.html: Main Studio web app containing the three hash-routed views (#/stage, #/overlay, #/deck).",
+      "2. overlay.html: Standalone transparent OBS Browser Source surface (1920x1080).",
+      "3. design-system.html: Standalone Design System v1.0 reference surface."
     ]
   },
   "appModules": [

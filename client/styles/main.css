@@ -1,0 +1,67 @@
+@import url('./handoff-01.css');
+@import url('./handoff-02.css');
+@import url('./handoff-03.css');
+@import url('./handoff-04.css');
+@import url('./handoff-05.css');
+@import url('./handoff-06.css');
+@import url('./handoff-07.css');
+@import url('./handoff-08.css');
+@import url('./handoff-09.css');
+@import url('./handoff-10.css');
+
+.ov[data-state="active"] .ov-compiler {
+  opacity: 1;
+  transform: none;
+}
+
+.ov-boss, .ov-poll, .ov-compiler { z-index: 3; }
+.ov-poll { height: 352px; overflow: hidden; box-sizing: border-box; padding: 14px 16px 12px; }
+.ov-poll::after { right: 0; bottom: 0; }
+.ov-poll__meta { margin-top: 5px; }
+.ov-poll__list { margin: 2px 0 0; }
+.cart { text-align: left; }
+.copyline code { min-width: 0; overflow-wrap: anywhere; white-space: normal; }
+.ds-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.ds-table-wrap { overflow-x: auto; }
+@media (max-width: 700px) {
+  .type-row { display: block; }
+  .type-row__spec { margin-bottom: 8px; }
+  .t-display { font-size: clamp(28px, 9vw, 52px); overflow-wrap: anywhere; }
+  .t-h1, .t-h2, .t-h3, .t-mono { overflow-wrap: anywhere; }
+}
+.ov-idea__text {
+  display: block;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+  max-height: none;
+  overflow: hidden;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  font-size: 16px;
+  line-height: 1.25;
+}
+.ov-idea__text[data-len="sm"] {
+  font-size: 16px;
+  line-height: 1.25;
+}
+.ov-idea__text[data-len="md"] {
+  font-size: 13.5px;
+  line-height: 1.25;
+}
+.ov-idea__text[data-len="lg"] {
+  font-size: 11.5px;
+  line-height: 1.15;
+}
+.ov-idea[data-len="md"] {
+  padding: 5px 0 5px;
+  gap: 8px;
+}
+.ov-idea[data-len="lg"] {
+  padding: 1px 0 1px;
+  gap: 5px;
+}
+
+
+

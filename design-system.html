@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChaosForge Live — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="client/styles/main.css">
+</head>
+<body>
+  <header class="ds-topbar"><svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" style="color:var(--green-2)">
+      <path d="M16 1.5 29.5 9v14L16 30.5 2.5 23V9z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M18.6 6.5 10 17.2h4.6L13.4 25.5 22 14.8h-4.6z" fill="currentColor"/>
+    </svg><span class="ds-topbar__title">CHAOSFORGE LIVE · DESIGN SYSTEM v1.0</span>
+    <a class="ds-topbar__back" href="index.html">← BACK TO STUDIO</a></header>
+  <main class="ds-wrap">
+    <section class="ds-hero"><p class="ds-hero__kicker">NEON CYBER-FORGE &amp; ESPORTS HUD</p>
+      <h1>Visual system for<br><em>controlled chaos</em>.</h1>
+      <p>Twitch chat writes the rules, Codex compiles them into game entities, and the streamer stays in control.
+        The system keeps a dense esports cockpit legible on a live broadcast.</p>
+      <div class="ds-hero__meta"><span>CODEX × TWITCHCON</span><span>$25K HACKATHON</span>
+        <span>CANVAS 2D · NO ASSETS</span><span>1920×1080 SAFE ZONE</span><span>6 STATES</span></div>
+    </section>
+    <section class="ds-section"><div class="ds-section__head"><span class="ds-num">01</span>
+      <h2>Visual principles</h2><span class="ds-section__sub">THREE RULES</span></div>
+      <div class="ds-grid ds-grid--3"><article class="ds-card"><h3>Disciplined neon</h3>
+        <p>Glow signals borders, status and data; dark surfaces keep the focus clear.</p></article>
+        <article class="ds-card"><h3>Color is a signal</h3><p>Violet is Twitch, emerald is Codex,
+          amber is hype and time, and red is reserved for safety.</p></article>
+        <article class="ds-card"><h3>Dense, ordered HUD</h3><p>Monospace presents machine data;
+          Space Grotesk carries headings and conversation.</p></article></div>
+      <div class="ds-grid ds-grid--2" style="margin-top:16px">
+        <article class="ds-card"><h3>Clipped corners</h3><p>Cut corners suggest hardware and controls while distinguishing the product from rounded cards.</p></article>
+        <article class="ds-card"><h3>Visual anchor</h3><p>Each view has one focus: the live poll, judge prompt or panic control.</p></article>
+      </div>
+    </section>
+    <section class="ds-section"><div class="ds-section__head"><span class="ds-num">02</span>
+      <h2>Color palette</h2><span class="ds-section__sub">TOKENS · ONE SOURCE OF TRUTH</span></div>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch__chip" style="background:#060912"><span>#060912</span></div><div class="swatch__info"><b>Void Slate</b><em>--bg</em></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#0b111d"><span>#0B111D</span></div><div class="swatch__info"><b>Panel Ink</b><em>--panel</em></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#26324d"><span>#26324D</span></div><div class="swatch__info"><b>Wire Line</b><em>--line</em></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:linear-gradient(135deg,#9146ff,#c084fc)"><span>#9146FF → #C084FC</span></div><div class="swatch__info"><b>Twitch Violet</b><em>--purple / --purple-2</em></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:linear-gradient(135deg,#10a37f,#34d399)"><span>#10A37F → #34D399</span></div><div class="swatch__info"><b>Codex Emerald</b><em>--green / --green-2</em></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)"><span>#F59E0B → #FBBF24</span></div><div class="swatch__info"><b>Hype Amber</b><em>--amber / --amber-2</em></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:linear-gradient(135deg,#ef4444,#f87171)"><span>#EF4444 → #F87171</span></div><div class="swatch__info"><b>Safety Red</b><em>--red / --red-2</em></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#e9eef8"><span style="color:rgba(7,11,20,.6)">#E9EEF8</span></div><div class="swatch__info"><b>Signal White</b><em>--ink</em></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#8b9bb6"><span>#8B9BB6</span></div><div class="swatch__info"><b>Telemetry Grey</b><em>--muted</em></div></div>
+      </div>
+      <div class="ds-grid ds-grid--2" style="margin-top:16px">
+        <article class="ds-card"><h3>Color use</h3><p>Dark backgrounds dominate. Use violet for audience actions, emerald for Codex, amber for hype and red for safety.</p></article>
+        <article class="ds-card"><h3>Contrast</h3><p>Use primary ink for essential text; reserve dim telemetry for secondary labels.</p></article>
+      </div>
+    </section>
+    <section class="ds-section"><div class="ds-section__head"><span class="ds-num">03</span><h2>Typography</h2>
+      <span class="ds-section__sub">SPACE GROTESK + JETBRAINS MONO</span></div>
+      <div class="type-row"><div class="type-row__spec">DISPLAY<br>52 / 700 / -3%</div><div class="type-row__sample"><div class="t-display">CHAOS WITH RULES.</div></div></div>
+      <div class="type-row"><div class="type-row__spec">H1<br>38 / 700 / -2%</div><div class="type-row__sample"><div class="t-h1">An arena written by chat</div></div></div>
+      <div class="type-row"><div class="type-row__spec">H2<br>27 / 600</div><div class="type-row__sample"><div class="t-h2">Codex is compiling the rules</div></div></div>
+      <div class="type-row"><div class="type-row__spec">H3<br>20 / 600</div><div class="type-row__sample"><div class="t-h3">Round 03 · Rubber duck rain</div></div></div>
+      <div class="type-row"><div class="type-row__spec">BODY<br>15 / 400 / 1.65</div><div class="type-row__sample"><div class="t-body">Every idea passes through the approval queue before deployment.</div></div></div>
+      <div class="type-row"><div class="type-row__spec">MONO / DATA<br>13 / 400</div><div class="type-row__sample"><div class="t-mono">const entities = spawn(chaos, 24); // ok</div></div></div>
+      <div class="type-row"><div class="type-row__spec">LABEL<br>10 / 500 / +16%</div><div class="type-row__sample"><div class="t-label">AUDIENCE QUEUE · 12,842 VIEWERS</div></div></div>
+      <article class="ds-card" style="margin-top:16px"><h3>Principle</h3><p>Use Space Grotesk for headings and JetBrains Mono for timestamps, patch IDs, logs and data.</p></article>
+    </section>
+    <section class="ds-section"><div class="ds-section__head"><span class="ds-num">04</span><h2>Spacing, corners and cuts</h2>
+      <span class="ds-section__sub">HARDWARE-INSPIRED GEOMETRY</span></div>
+      <div class="ds-grid ds-grid--3"><article class="ds-card"><h3>Spacing</h3><p>Use a consistent rhythm of 4, 8, 12, 16, 24 and 32 pixels.</p></article>
+        <article class="ds-card"><h3>Panels</h3><p>One-pixel borders and clipped corners define the esports cockpit.</p><small>--clip-panel</small></article>
+        <article class="ds-card"><h3>Buttons and tags</h3><p>Use smaller cuts to keep actions recognizable at broadcast scale.</p><small>--clip-btn · --clip-tag</small></article></div>
+      <div class="tokens-grid" style="margin-top:16px">
+        <div class="token-box"><b>--sp-1</b><em>4px</em><p>Label gap.</p></div>
+        <div class="token-box"><b>--sp-2</b><em>8px</em><p>Control gap.</p></div>
+        <div class="token-box"><b>--sp-3</b><em>12px</em><p>Chip padding.</p></div>
+        <div class="token-box"><b>--sp-4</b><em>16px</em><p>Panel padding.</p></div>
+        <div class="token-box"><b>--sp-5</b><em>24px</em><p>Group gap.</p></div>
+        <div class="token-box"><b>--sp-6</b><em>32px</em><p>Page padding.</p></div>
+        <div class="token-box"><b>--radius</b><em>0px</em><p>Clipped, not rounded.</p></div>
+        <div class="token-box"><b>--clip-btn</b><em>8px cut</em><p>Buttons and chips.</p></div>
+        <div class="token-box"><b>--clip-panel</b><em>16px cut</em><p>Panels and cards.</p></div>
+        <div class="token-box"><b>--grid</b><em>32px</em><p>Subtle background grid.</p></div>
+      </div>
+    </section>
+    <section class="ds-section"><div class="ds-section__head"><span class="ds-num">05</span><h2>Broadcast safe zone</h2></div>
+      <div class="ds-safezone">
+        <div class="sz-frame" role="img" aria-label="16 by 9 diagram: center 60 percent safe zone, boss top center, poll top right and compiler bottom left">
+          <div class="sz-frame__grid"></div><div class="sz-frame__safe"><span>SAFE ZONE<br>1152 × 648<br>NO SPAWN</span></div>
+          <div class="sz-zone sz-zone--boss">BOSS · GRAVITY</div><div class="sz-zone sz-zone--poll">AUDIENCE POLL</div>
+          <div class="sz-zone sz-zone--comp">CODEX<br>COMPILER</div>
+        </div>
+        <ul class="ds-list"><li>The center 60% (1152 × 648) keeps gameplay and the streamer visible.</li>
+          <li>Entities spawn in the outer ring and fade to 70% opacity inside the safe zone.</li>
+          <li>Poll is top right, compiler bottom left, and boss bar top center.</li>
+          <li>The OBS source stays transparent for compositing over the broadcast.</li></ul>
+      </div>
+    </section>
+    <section class="ds-section"><div class="ds-section__head"><span class="ds-num">06</span><h2>Components and states</h2>
+      <span class="ds-section__sub">SIX ROUND STATES</span></div>
+      <div class="ds-grid ds-grid--3"><article class="ds-card"><h3>Idle and voting</h3><p>Idle is ready. Violet indicates the live poll and its 15-second countdown.</p></article>
+        <article class="ds-card"><h3>Compiling and active</h3><p>Emerald identifies the safe compiler; amber identifies the active chaos patch.</p></article>
+        <article class="ds-card"><h3>Panic and blocked</h3><p>Red draws attention to safety and the rubber duck fallback.</p></article></div>
+      <div class="ds-grid ds-grid--2" style="margin-top:16px"><article class="ds-card"><h3>Emergency control</h3>
+        <div class="ds-demo-panic"><span>🛑</span><span><b>PANIC CLEAR</b><em>SPACEBAR · CLEAR AND MUTE</em></span></div></article>
+        <article class="ds-card"><h3>Cartridge</h3><p>Saved patches show a name, description and tags and can be deployed in one click.</p></article></div>
+      <div class="comp-row"><div class="comp-row__label"><b>Actions</b><span>Emerald for primary actions, violet for audience actions, red for safety.</span></div>
+        <div class="comp-row__demo ds-actions"><button class="btn btn--primary" type="button">SUBMIT IDEA</button>
+          <button class="btn btn--purple" type="button">VOTE</button><button class="btn" type="button">REFRESH</button>
+          <button class="btn btn--danger-ghost" type="button">PANIC CLEAR</button><button class="btn btn--xs btn--amber-ghost" type="button">SKIP ROUND</button></div></div>
+      <div class="comp-row"><div class="comp-row__label"><b>Toggles and segments</b><span>Show the active state and reserve segments for exclusive options.</span></div>
+        <div class="comp-row__demo ds-actions"><button class="toggle" type="button" aria-pressed="true"><i></i>SOUND</button>
+          <button class="toggle" type="button" aria-pressed="false"><i></i>AUTO DEMO</button>
+          <div class="seg seg--approve"><button type="button" class="is-on">MANUAL<em>Review first</em></button><button type="button">AUTO<em>Faster</em></button></div></div></div>
+      <div class="comp-row">
+        <div class="comp-row__label"><b>Safety alert</b><span>Show the blocked state and its safe fallback.</span></div>
+        <div class="comp-row__demo">
+          <div class="ds-demo-panic" role="note" aria-label="Blocked prompt and safe fallback example">
+            <span aria-hidden="true">!!</span>
+            <div><b>PROMPT BLOCKED BY TOS GUARD</b><em>DEPLOYING SAFE RUBBER DUCK FALLBACK</em></div>
+          </div>
+        </div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-row__label"><b>Chaos cartridge</b><span>An idea with an ID, author, tags and deploy action.</span></div>
+        <div class="comp-row__demo">
+          <article class="cart ds-demo-cart" style="--acc:var(--purple-2)">
+            <div class="cart__top"><span class="cart__ico" aria-hidden="true">✦</span><span class="cart__id">CF-0142</span><span class="cart__stat">LIVE</span></div>
+            <h3>DUCK STORM</h3><p class="cart__idea">Rubber ducks rain down in response to LUL.</p>
+            <div class="cart__tags"><span>DUCK</span><span>PHYSICS</span><span>30S</span></div>
+            <div class="cart__foot"><span class="cart__by">@nova_blitz</span><button class="cart__play" type="button">DEPLOY ▶</button></div>
+          </article>
+        </div>
+      </div>
+      <div class="comp-row"><div class="comp-row__label"><b>State lifecycle</b><span>Exactly one current state is shown.</span></div>
+        <div class="comp-row__demo ds-table-wrap"><table class="ds-table"><thead><tr><th>STATE</th><th>TRIGGER</th><th>DISPLAY</th><th>EXIT</th></tr></thead><tbody>
+          <tr><td><b>Idle</b></td><td>Waiting</td><td>Ready</td><td>New vote</td></tr><tr><td><b>Voting</b></td><td>Ideas</td><td>15-second poll</td><td>Time expires</td></tr>
+          <tr><td><b>Compiling</b></td><td>Winning idea</td><td>AST compiler</td><td>Ready or error</td></tr><tr><td><b>Active</b></td><td>Compiled patch</td><td>Entities and combo</td><td>30–45 seconds</td></tr>
+          <tr><td><b>Panic</b></td><td>Streamer control</td><td>Clear and mute</td><td>Next action</td></tr><tr><td><b>Blocked</b></td><td>Guard match</td><td>Safe fallback</td><td>Next action</td></tr>
+        </tbody></table></div></div>
+    </section>
+    <section class="ds-section"><div class="ds-section__head"><span class="ds-num">07</span><h2>Motion and accessibility</h2>
+      <span class="ds-section__sub">CLEAR AND INCLUSIVE</span></div>
+      <div class="ds-grid ds-grid--2"><article class="ds-card"><h3>Motion rhythm</h3><p>Enter in 180ms and exit in 140ms using the shared easing curve; poll updates every 250ms.</p></article>
+        <article class="ds-card"><h3>Reduced motion</h3><p>Reduce particles and transitions when requested; state must remain clear from text and color.</p></article>
+        <article class="ds-card"><h3>Keyboard</h3><p>Space clears, WASD or arrows move the ship, and controls retain a visible focus indicator.</p></article>
+        <article class="ds-card"><h3>Language and content</h3><p>Interface text is English. Chat ideas can be multilingual and are shown as submitted.</p></article></div>
+    </section>
+    <section class="ds-section"><div class="ds-section__head"><span class="ds-num">08</span><h2>Integration</h2>
+      <span class="ds-section__sub">STUDIO · OBS · TWITCH</span></div>
+      <table class="ds-table"><thead><tr><th>SURFACE</th><th>ROLE</th><th>CONTRACT</th></tr></thead><tbody>
+        <tr><td><b>Studio</b></td><td>Stage, overlay preview and deck</td><td>Three hash-routed views</td></tr>
+        <tr><td><b>OBS source</b></td><td>Transparent broadcast overlay</td><td>1920 × 1080, linked to a Studio</td></tr>
+        <tr><td><b>Twitch chat</b></td><td>Ideas, votes and reactions</td><td>IRC or simulated crowd</td></tr>
+      </tbody></table>
+    </section>
+    <footer class="ds-footer">CHAOSFORGE LIVE · DESIGN SYSTEM v1.0</footer>
+  </main>
+</body>
+</html>

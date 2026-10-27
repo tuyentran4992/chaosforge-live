@@ -1,0 +1,24 @@
+# Closure Intent — phase-01 / sprint-01 (closure-sprint-01-01)
+
+- `task-id`: `task-sprint-01`
+- `closure-id`: `closure-sprint-01-01`
+- Phase / Sprint: `phase-01` / `sprint-01`
+- Stories đã nghiệm thu (`accepted`):
+  - `us-001` (`.agent-kit/specs/roadmap/phase-01/sprints/sprint-01/stories/us-001.md`)
+  - `us-002` (`.agent-kit/specs/roadmap/phase-01/sprints/sprint-01/stories/us-002.md`)
+- `HEAD` hiện tại: `N/A` (`fatal: not a git repository (or any of the parent directories): .git`)
+- `git status` hiện có của người dùng: Workspace chưa khởi tạo Git repository (`.git` chưa tồn tại).
+- Danh sách path thuộc `phase-01 / sprint-01`:
+  - `.agent-kit/specs/MISSION.md`
+  - `.agent-kit/specs/ROADMAP.md`
+  - `.agent-kit/specs/roadmap/phase-01/PHASE.md`
+  - `.agent-kit/specs/roadmap/phase-01/sprints/sprint-01/SPRINT.md`
+  - `.agent-kit/specs/roadmap/phase-01/sprints/sprint-01/stories/us-001.md`
+  - `.agent-kit/specs/roadmap/phase-01/sprints/sprint-01/stories/us-002.md`
+  - `.agent-kit/specs/backlog/BACKLOG.md`
+  - `.agent-kit/specs/backlog/items/bl-001.md`
+  - `.agent-kit/handoffs/task-us-001-council-01/` (và 4 member handoffs `sp1`, `sp2`, `sp3`, `u1`)
+  - `.agent-kit/user/README.md`
+  - `.agent-kit/user/reports/2026-10-27-council-ideas.md`
+  - `.agent-kit/user/dashboard/data.js`
+- Trạng thái Git commit: `closure pending` — Theo `SPRINT-CLOSURE.md` mục "Không": *"Không bypass hook, không đổi Git identity, không `git init`, không bịa hash"* và mục "Report": *"Delivery đạt nhưng chưa commit: nói rõ 'closure pending'"*. Khi người dùng khởi tạo Git repo (hoặc cấp quyền `git init`), PM sẽ thực hiện commit theo template `sprint(phase-01/sprint-01): lock Codex Chaos Foundry idea and mission`.
