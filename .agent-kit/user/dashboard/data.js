@@ -23,9 +23,9 @@ window.DASHBOARD_DATA = {
       link: "../../specs/roadmap/phase-02/sprints/sprint-02/SPRINT.md"
     },
     {
-      title: "Đã mở Sprint 03: Kiểm thử QA & Đóng gói bài nộp Devpost",
-      howToTry: "Xem chi tiết mục tiêu Sprint 03 tại SPRINT.md và hai user stories us-009, us-010.",
-      link: "../../specs/roadmap/phase-02/sprints/sprint-03/SPRINT.md"
+      title: "Đã bổ sung User Story Meme Chaos Pack (us-009) vào Sprint 03",
+      howToTry: "Xem chi tiết mục tiêu Meme Chaos Pack tại us-009.md (Bonk Doge, Popcat, Meme SFX, Floating Badges).",
+      link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-009.md"
     }
   ],
 
@@ -33,9 +33,9 @@ window.DASHBOARD_DATA = {
     {
       id: "risk-007",
       title: "Chuẩn bị video demo 2 phút và hoàn thiện form Devpost trước hạn 02/11/2026",
-      symptom: "Sản phẩm code đã nghiệm thu hoàn tất; cần quay video demo và hoàn thiện bài viết Devpost.",
+      symptom: "Sản phẩm code đang bổ sung Meme Pack; sau đó cần QA và quay video demo trước hạn chót.",
       severity: "low",
-      link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-010.md"
+      link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-011.md"
     }
   ],
 
@@ -124,21 +124,27 @@ window.DASHBOARD_DATA = {
         },
         {
           id: "sprint-03",
-          title: "Kiểm thử QA E2E & Đóng gói Bài nộp Devpost",
-          kind: "release-validation",
+          title: "Meme Chaos Pack, Kiểm thử QA & Đóng gói Bài nộp Devpost",
+          kind: "delivery",
           status: "in-progress",
           stories: [
             {
               id: "us-009",
-              title: "Kiểm thử E2E QA, Release Checklist & Xác minh Môi trường Sạch",
+              title: "Meme Chaos Pack: Thêm Thực thể Meme (Bonk Doge, Popcat), Âm thanh Troll & Chữ Nổi Reaction",
               status: "todo",
               link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-009.md"
             },
             {
               id: "us-010",
-              title: "Kịch bản Video Demo 2 Phút & Bộ Nội dung Nộp bài Devpost Hoàn chỉnh",
+              title: "Kiểm thử E2E QA, Release Checklist & Xác minh Môi trường Sạch",
               status: "todo",
               link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-010.md"
+            },
+            {
+              id: "us-011",
+              title: "Kịch bản Video Demo 2 Phút & Bộ Nội dung Nộp bài Devpost Hoàn chỉnh",
+              status: "todo",
+              link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-011.md"
             }
           ]
         }
@@ -181,12 +187,12 @@ window.DASHBOARD_DATA = {
   agents: {
     "pm": {
       status: "idle",
-      task: "Đã mở Sprint 03 (us-009, us-010); sẵn sàng điều phối khi người dùng yêu cầu",
+      task: "Đã cập nhật Sprint 03 với 3 stories (us-009 Meme Pack, us-010 QA, us-011 Devpost)",
       link: "../../specs/roadmap/phase-02/sprints/sprint-03/SPRINT.md"
     },
-    "qa": {
-      status: "waiting",
-      task: "Chờ kích hoạt kiểm thử us-009 (Release Checklist & Clean Environment)",
+    "lead-code": {
+      status: "idle",
+      task: "Sẵn sàng nhận handoff us-009 (Meme Chaos Pack)",
       link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-009.md"
     }
   }

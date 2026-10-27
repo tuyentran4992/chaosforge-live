@@ -2,7 +2,7 @@
 
 Trạng thái tài liệu: Đang mở (`in-progress`). ID: `phase-02` — Thiết kế & Phát triển MVP `ChaosForge Live` (`Codex Chaos Foundry`).
 
-Type/điều kiện: Phase phát triển sản phẩm có UI. Đã hoàn tất và duyệt `sprint-01` (`kind: design` — `done`) và `sprint-02` (`kind: delivery`, domain: `code` — `done`); hiện đang mở `sprint-03` (`kind: release-validation`) để kiểm thử QA độc lập và chuẩn bị tài liệu nộp bài Devpost.
+Type/điều kiện: Phase phát triển sản phẩm có UI. Đã hoàn tất và duyệt `sprint-01` (`kind: design` — `done`) và `sprint-02` (`kind: delivery`, domain: `code` — `done`); hiện đang mở `sprint-03` (`kind: delivery`, domains: `code`, `test`, `docs`) để triển khai Meme Chaos Pack, kiểm thử QA độc lập và chuẩn bị tài liệu nộp bài Devpost.
 
 ## Mục tiêu và ranh giới
 
@@ -23,7 +23,7 @@ Phụ thuộc hoàn tất `phase-01` ([PHASE.md](../phase-01/PHASE.md) — `done
 | --- | --- | --- | --- |
 | [sprint-01 — Thiết kế UX/UI 3 bề mặt ChaosForge Live](sprints/sprint-01/SPRINT.md) | 1 | `design` | `done` |
 | [sprint-02 — Xây dựng Core Engine, Twitch/Codex Integration & UI](sprints/sprint-02/SPRINT.md) | 2 | `delivery` (`code`) | `done` |
-| [sprint-03 — Kiểm thử E2E QA, Video Demo 2 Phút & Đóng gói Bài nộp Devpost](sprints/sprint-03/SPRINT.md) | 3 | `release-validation` | **`in-progress`** |
+| [sprint-03 — Meme Chaos Pack, Kiểm thử QA & Đóng gói Bài nộp Devpost](sprints/sprint-03/SPRINT.md) | 3 | `delivery` (`code`, `test`, `docs`) | **`in-progress`** |
 
 Sprint owns goal/timebox, story index, dependencies và integration acceptance; delivery là derived từ leaf stories. Story details/acceptance/delivery nằm ở từng story.
 
@@ -31,6 +31,6 @@ Sprint owns goal/timebox, story index, dependencies và integration acceptance; 
 
 - [sprint-01](sprints/sprint-01/SPRINT.md) (`kind: design`): Đã hoàn tất nghiệm thu (`done`, cả 3 story `us-003`, `us-004`, `us-005` đạt `accepted`).
 - [sprint-02](sprints/sprint-02/SPRINT.md) (`kind: delivery`, domain: `code`): Đã hoàn tất nghiệm thu (`done`, cả 3 story `us-006`, `us-007`, `us-008` đạt `accepted`, commit `c777c07` và `18a353e`).
-- [sprint-03](sprints/sprint-03/SPRINT.md) (`kind: release-validation`): Đang mở (`in-progress`) gồm 2 stories: [us-009](sprints/sprint-03/stories/us-009.md) và [us-010](sprints/sprint-03/stories/us-010.md).
+- [sprint-03](sprints/sprint-03/SPRINT.md) (`kind: delivery`, domains: `code`, `test`, `docs`): Đang mở (`in-progress`) gồm 3 stories: [us-009](sprints/sprint-03/stories/us-009.md), [us-010](sprints/sprint-03/stories/us-010.md), và [us-011](sprints/sprint-03/stories/us-011.md).
 
 Quay lại [ROADMAP](../../ROADMAP.md).
