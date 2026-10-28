@@ -1,4 +1,3 @@
-import time
 import os
 import glob
 import subprocess
@@ -15,7 +14,7 @@ for f in glob.glob(f"{RAW_DIR}/*"):
     except:
         pass
 
-print("[1/5] Launching Playwright Chromium (1920x1080 60fps capable)...")
+print("[1/5] Launching Playwright Chromium...")
 with sync_playwright() as p:
     browser = p.chromium.launch(
         headless=True,
@@ -40,53 +39,54 @@ with sync_playwright() as p:
     print("[2/5] Navigating to http://127.0.0.1:3000/#stage...")
     page.goto("http://127.0.0.1:3000/#stage")
     page.wait_for_selector("#hypeBtn")
-    time.sleep(10.0) # Intro voiceover playing (t=0..10)
+    # Intro voiceover (t=0..10s)
+    page.wait_for_timeout(10000)
     
     print("[3/5] Starting 1-Click Simulate 500 Viewers Hype...")
     page.click("#hypeBtn")
-    # Poll runs for 15s (t=10..26)
-    time.sleep(16.0)
+    # Poll runs for 15s (t=10..26s)
+    page.wait_for_timeout(16000)
     
-    # Active chaos begins (t=26..36)
-    time.sleep(10.0)
+    # Active chaos begins (t=26..36s)
+    page.wait_for_timeout(10000)
     
-    # Doge meme prompt (t=36..55)
+    # Doge meme prompt (t=36..55s)
     print("Submitting Doge Meme prompt...")
     page.fill("#judgePrompt", "!forge bonk doge storm with boom sound")
     page.click("#judgeCompile")
-    time.sleep(19.0)
+    page.wait_for_timeout(19000)
     
-    # Popcat meme prompt (t=55..75)
+    # Popcat meme prompt (t=55..74s)
     print("Submitting Popcat Meme prompt...")
     page.fill("#judgePrompt", "!forge zero gravity popcat invasion with bruh sound")
     page.click("#judgeCompile")
-    time.sleep(20.0)
+    page.wait_for_timeout(19000)
     
-    # Panic clear (t=75)
+    # Panic clear (t=74s)
     print("Demonstrating Broadcaster Safety: Spacebar Panic Clear...")
     page.click("#panicMiniBtn")
-    time.sleep(3.0)
+    page.wait_for_timeout(3000)
     
-    # Streamer Deck (t=78..96)
+    # Streamer Deck (t=77..95s)
     print("Navigating to Streamer Control Deck (#deck)...")
     page.evaluate("() => { location.hash = '#deck'; }")
-    time.sleep(7.0)
+    page.wait_for_timeout(7000)
     
     print("Connecting Raid Room TW26 and firing chaos cartridge...")
     page.evaluate("() => { document.getElementById('joinRoom')?.click(); }")
-    time.sleep(2.0)
+    page.wait_for_timeout(2000)
     page.evaluate("() => { document.getElementById('sendCart')?.click(); }")
-    time.sleep(9.0)
+    page.wait_for_timeout(9000)
     
-    # OBS Overlay (t=96..105)
+    # OBS Overlay (t=95..105s)
     print("Navigating to OBS Transparent Overlay (#overlay)...")
     page.evaluate("() => { location.hash = '#overlay'; }")
-    time.sleep(9.0)
+    page.wait_for_timeout(10000)
     
-    # Return to Stage for finale hero shot (t=105..117)
+    # Return to Stage for finale hero shot (t=105..117s)
     print("Returning to Stage (#stage) for finale hero shot...")
     page.evaluate("() => { location.hash = '#stage'; }")
-    time.sleep(12.0)
+    page.wait_for_timeout(12000)
     
     print("[4/5] Closing browser and saving video...")
     context.close()
@@ -117,7 +117,7 @@ encode_cmd = [
     "-filter:v", "minterpolate=fps=60:mi_mode=blend",
     "-c:v", "libx264",
     "-preset", "fast",
-    "-crf", "21",
+    "-crf", "20",
     "-pix_fmt", "yuv420p",
     "-c:a", "aac",
     "-b:a", "192k",
