@@ -159,6 +159,11 @@ window.DASHBOARD_DATA = {
   reports: [
     {
       date: "2026-10-28",
+      title: "Sản xuất Hoàn tất Video Demo 2 Phút & Bộ Ảnh Devpost Submission (Marketing)",
+      link: "../reports/2026-10-28-marketing-demo-video-and-assets.md"
+    },
+    {
+      date: "2026-10-28",
       title: "Đóng Sprint 03: Trọn bộ Hồ sơ Devpost & Kịch bản Video Demo (us-011)",
       link: "../reports/2026-10-28-sprint-03-devpost-package-ready.md"
     },
@@ -197,13 +202,18 @@ window.DASHBOARD_DATA = {
   agents: {
     "pm": {
       status: "idle",
-      task: "Đã hoàn thành trọn bộ hồ sơ Devpost và kịch bản video demo 2 phút (us-011); Sprint 03 đóng thành công",
+      task: "Đã hoàn thành trọn bộ hồ sơ Devpost, kịch bản video demo và trọn bộ media deliverables (us-011)",
       link: "../../specs/roadmap/phase-02/sprints/sprint-03/DEVPOST_SUBMISSION.md"
     },
     "lead-code": {
       status: "idle",
       task: "Đã hoàn thành bàn giao us-009 (45/45 test pass, 76 file ≤ 250 dòng)",
       link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-009.md"
+    },
+    "lead-marketing": {
+      status: "idle",
+      task: "Đã hoàn thành bàn giao video demo 104s và bộ ảnh HD cho Devpost",
+      link: "../reports/2026-10-28-marketing-demo-video-and-assets.md"
     }
   }
 };
