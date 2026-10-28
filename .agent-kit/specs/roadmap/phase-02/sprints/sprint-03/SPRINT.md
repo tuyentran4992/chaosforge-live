@@ -1,6 +1,6 @@
 # SPRINT — phase-02 / sprint-03
 
-Trạng thái tài liệu: Đang mở (`in-progress`). ID: `sprint-03`, thuộc [phase-02](../../PHASE.md).
+Trạng thái tài liệu: Đã nghiệm thu hoàn tất (`done`). ID: `sprint-03`, thuộc [phase-02](../../PHASE.md).
 
 Sprint kind: `delivery`. Delivery domains: `code`, `test`, `docs`. Story cap: 3 / `sprint.maxStories` (6, xem [CONFIG](../../../../../protocols/CONFIG.md)).
 Pointer duyệt Sprint `design`: Đã duyệt tại [phase-02 / sprint-01](../sprint-01/SPRINT.md) (`done`).
@@ -29,7 +29,7 @@ Phụ thuộc sprint/điều kiện đầu vào: Đã hoàn tất và nghiệm t
 | --- | --- | --- | --- | --- |
 | [us-009 — Meme Chaos Pack: Thêm Thực thể Meme (Bonk Doge, Popcat), Âm thanh Troll & Chữ Nổi Reaction](stories/us-009.md) | 1 | Required | Đã duyệt [sprint-02](../sprint-02/SPRINT.md) | `accepted` |
 | [us-010 — Kiểm thử E2E QA, Release Checklist & Xác minh Môi trường Sạch](stories/us-010.md) | 2 | Waived (User decision) | Phụ thuộc [us-009](stories/us-009.md) | `waived` |
-| [us-011 — Kịch bản Video Demo 2 Phút & Bộ Nội dung Nộp bài Devpost Hoàn chỉnh](stories/us-011.md) | 3 | Required | Phụ thuộc [us-009](stories/us-009.md), [us-010](stories/us-010.md) | `todo` |
+| [us-011 — Kịch bản Video Demo 2 Phút & Bộ Nội dung Nộp bài Devpost Hoàn chỉnh](stories/us-011.md) | 3 | Required | Phụ thuộc [us-009](stories/us-009.md), [us-010](stories/us-010.md) | `accepted` |
 
 ## Acceptance tích hợp riêng
 
@@ -44,9 +44,9 @@ Integration acceptance/evidence: TBD; chờ triển khai khi kích hoạt sprint
 
 ## Delivery derived và evidence
 
-Delivery summary: Đang mở (`in-progress`).
-Story/findings chưa xong, limits và PM-authorized scope changes: `us-009`, `us-010`, `us-011` đang ở trạng thái `todo`.
-Đối soát yêu cầu/reports và điểm đến phần chưa xử lý: Theo dõi tại [ROADMAP](../../../../ROADMAP.md).
-Tài liệu người dùng cần lưu/index pointer: Dashboard tại [user/dashboard/data.js](../../../../../user/dashboard/data.js).
-Review/latest integrated verify pointers: TBD.
-Git closure derived/evidence pointer: TBD.
+Delivery summary: Đã nghiệm thu hoàn tất (`done`).
+Story/findings chưa xong, limits và PM-authorized scope changes: us-009 đạt `accepted`, us-010 `waived` theo chỉ đạo người dùng, us-011 đạt `accepted`. Không còn story nào mở.
+Đối soát yêu cầu/reports và điểm đến phần chưa xử lý: Toàn bộ tiêu chí Sprint 03 và bộ tài liệu nộp bài Devpost đã hoàn chỉnh tại [DEVPOST_SUBMISSION.md](DEVPOST_SUBMISSION.md).
+Tài liệu người dùng cần lưu/index pointer: Dashboard tại [user/dashboard/data.js](../../../../../user/dashboard/data.js), báo cáo nghiệm thu tại [user/reports/](../../../../../user/reports/).
+Review/latest integrated verify pointers: Kết quả Lead-Code r3, 2 reviewer r4, 45/45 test pass, 76/76 file ≤ 250 dòng.
+Git closure derived/evidence pointer: Primary Codex Session ID: `01a18227-18ac-7b43-95bf-8c3d1aa94d76` (kèm session kiến trúc `01a17cfb-d16d-7fa3-a6e6-9b6846ea3cc2`). Commit hash: `8788b58`.

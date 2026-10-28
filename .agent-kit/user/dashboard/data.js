@@ -4,19 +4,24 @@
  */
 window.DASHBOARD_DATA = {
   project: "ChaosForge Live (Codex × TwitchCon)",
-  updatedAt: "2026-10-28 18:45",
+  updatedAt: "2026-10-28 19:05",
 
   decisions: [
     {
-      id: "dec-008",
-      title: "Nghiệm thu us-009 Meme Chaos Pack & Chốt chính sách CR-02, CR-03",
-      recommendation: "Chấp thuận arcade hit chỉ kích hoạt reaction local trên stage; chấp thuận cơ chế debounce burst coalescing cho reaction neon; chính thức nghiệm thu đạt us-009.",
-      impact: "Meme Chaos Pack hoàn tất 100% với 45/45 test pass, sẵn sàng chuyển giao cho QA kiểm thử E2E (us-010).",
-      link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-009.md"
+      id: "dec-009",
+      title: "Hoàn tất Sprint 03 & Đóng gói Hồ sơ Devpost, Kịch bản Video Demo",
+      recommendation: "Nghiệm thu toàn bộ us-009, us-011 và miễn trừ us-010 theo chỉ đạo người dùng. Hoàn thành bộ hồ sơ nộp bài Devpost và kịch bản video demo 2 phút.",
+      impact: "Sản phẩm và hồ sơ bài thi đã sẵn sàng 100% để nộp trước hạn chót 02/11/2026 2:00 PM PST.",
+      link: "../../specs/roadmap/phase-02/sprints/sprint-03/DEVPOST_SUBMISSION.md"
     }
   ],
 
   newThings: [
+    {
+      title: "Trọn bộ hồ sơ Devpost & Kịch bản Video Demo 2 Phút đã hoàn chỉnh (us-011)",
+      howToTry: "Xem đầy đủ văn bản nộp bài chuẩn form Devpost và kịch bản video tại DEVPOST_SUBMISSION.md.",
+      link: "../../specs/roadmap/phase-02/sprints/sprint-03/DEVPOST_SUBMISSION.md"
+    },
     {
       title: "Meme Chaos Pack đã sẵn sàng (Bonk Doge, Popcat, Meme SFX & Reaction neon)",
       howToTry: "Vào http://127.0.0.1:3000, gõ prompt '!forge bonk doge storm with boom sound' hoặc '!forge popcat', xem vector hoạt họa và chữ nổi reaction khi va chạm/Spacebar Panic.",
@@ -121,7 +126,7 @@ window.DASHBOARD_DATA = {
           id: "sprint-03",
           title: "Meme Chaos Pack, Kiểm thử QA & Đóng gói Bài nộp Devpost",
           kind: "delivery",
-          status: "in-progress",
+          status: "done",
           stories: [
             {
               id: "us-009",
@@ -138,7 +143,7 @@ window.DASHBOARD_DATA = {
             {
               id: "us-011",
               title: "Kịch bản Video Demo 2 Phút & Bộ Nội dung Nộp bài Devpost Hoàn chỉnh",
-              status: "todo",
+              status: "accepted",
               link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-011.md"
             }
           ]
@@ -152,6 +157,11 @@ window.DASHBOARD_DATA = {
   backlog: [],
 
   reports: [
+    {
+      date: "2026-10-28",
+      title: "Đóng Sprint 03: Trọn bộ Hồ sơ Devpost & Kịch bản Video Demo (us-011)",
+      link: "../reports/2026-10-28-sprint-03-devpost-package-ready.md"
+    },
     {
       date: "2026-10-28",
       title: "Nghiệm thu us-009 Meme Chaos Pack (Doge, Popcat, Meme SFX & Reaction)",
@@ -186,9 +196,9 @@ window.DASHBOARD_DATA = {
 
   agents: {
     "pm": {
-      status: "active",
-      task: "Đã nghiệm thu us-009 Meme Chaos Pack; chuẩn bị kích hoạt QA cho us-010",
-      link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-010.md"
+      status: "idle",
+      task: "Đã hoàn thành trọn bộ hồ sơ Devpost và kịch bản video demo 2 phút (us-011); Sprint 03 đóng thành công",
+      link: "../../specs/roadmap/phase-02/sprints/sprint-03/DEVPOST_SUBMISSION.md"
     },
     "lead-code": {
       status: "idle",

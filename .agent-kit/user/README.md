@@ -9,6 +9,7 @@ PM chọn và biên tập theo [USER-DOCS](../planning/USER-DOCS.md); mỗi báo
 
 ## Kết quả và quyết định
 
+- [2026-10-28 — Đóng Sprint 03: Trọn bộ Hồ sơ Devpost & Kịch bản Video Demo (us-011)](reports/2026-10-28-sprint-03-devpost-package-ready.md)
 - [2026-10-28 — Nghiệm thu us-009 Meme Chaos Pack (Doge, Popcat, Meme SFX & Reaction)](reports/2026-10-28-us-009-meme-pack-accepted.md)
 - [2026-10-27 — Nghiệm thu Hoàn thành Sprint 02 (Code Delivery) — ChaosForge Live](reports/2026-10-27-sprint-02-code-completed.md)
 - [2026-10-27 — Quyết định Chính sách r3: Local Fallback, ToS Guard 4 Lớp & Hiển thị Poll OBS](reports/2026-10-27-sprint-02-r3-policy-decisions.md)
