@@ -1,5 +1,7 @@
 # ChaosForge Live
 
+**🎮 Live Interactive Web Demo:** [https://tuyentran4992.github.io/chaosforge-live/](https://tuyentran4992.github.io/chaosforge-live/)
+
 Requires Node.js 24. Start the local Studio with `npm start` and open
 `http://127.0.0.1:3000`. Run unit and integration checks with `npm test`.
 
