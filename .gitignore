@@ -1,6 +1,4 @@
 node_modules/
 *.log
 .playwright-cli/
-.agent-kit/memory/**/checkout-*/
-.agent-kit/memory/**/verify-*/
-.agent-kit/memory/ux-ui-reviewer/refs/
+.agent-kit/
