@@ -43,7 +43,7 @@ $('#obsUrl').textContent = sourceUrl.href;
 for (const link of document.querySelectorAll('a[href="overlay.html"]')) link.href = sourceUrl.href;
 const sync = createSync((event) => {
   if (['panic', 'clear', 'expire'].includes(event.type)) {
-    overlays.forEach((overlay) => overlay.clear());
+    overlays.forEach((overlay) => overlay.clear(event.type === 'panic'));
     arcade.clear();
     currentAst = null;
     if (event.type === 'panic') {

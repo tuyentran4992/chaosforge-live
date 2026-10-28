@@ -1,6 +1,8 @@
 import { validateAst } from '../../shared/ast-validate.js';
 import { insideSafe, spawnParticle, advanceParticle } from './physics.js';
 import { drawEntity } from './artwork.js';
+import { createReactions } from './reactions.js';
+import { createCollisionTracker } from './collisions.js';
 import { MAX_IDEA_LENGTH } from '../../shared/sync-contract.js';
 
 export function createOverlay(mount) {
@@ -42,6 +44,8 @@ export function createOverlay(mount) {
   canvas.width = 1920;
   canvas.height = 1080;
   const context = canvas.getContext('2d');
+  const reactions = createReactions();
+  const collisions = createCollisionTracker();
   let entities = [];
   let ast = null;
   let last = performance.now();
@@ -54,6 +58,8 @@ export function createOverlay(mount) {
     ast = next;
     expires = Number.isFinite(expiry) ? expiry : Date.now() + next.duration * 1000;
     entities = [];
+    reactions.clear();
+    collisions.clear();
     combo = 1;
     root.querySelector('[data-combo]').textContent = '×1.0';
     for (let i = 0; i < limit; i += 1) {
@@ -66,11 +72,14 @@ export function createOverlay(mount) {
     if (verified) verified.textContent = next.tags?.includes('uncertain') ? '✓ AST SAFE · DEFAULT FALLBACK' : '✓ AST SAFE VERIFIED';
     return true;
   }
-  function clear() {
+  function clear(panic = false) {
     ast = null;
     entities = [];
     root.dataset.state = 'idle';
     context.clearRect(0, 0, 1920, 1080);
+    reactions.clear();
+    collisions.clear();
+    if (panic) reactions.add(960, 300, performance.now(), true);
     const verified = root.querySelector('[data-verified]');
     if (verified) verified.textContent = '✓ AST SAFE VERIFIED';
   }
@@ -84,17 +93,27 @@ export function createOverlay(mount) {
       root.querySelector('[data-boss-fill]').style.width = `${Math.min(100, seconds / ast.duration * 100)}%`;
     }
     for (const entity of entities) {
-      advanceParticle(entity, ast, delta);
+      advanceParticle(entity, ast, delta, (particle) => {
+        reactions.add(Math.max(180, Math.min(1740, particle.x)), Math.max(90, Math.min(1000, particle.y)), now);
+      });
       context.globalAlpha = insideSafe(entity.x, entity.y) ? 0.7 : 1;
-      drawEntity(context, ast.entity, ast.collision, entity.x, entity.y);
+      drawEntity(context, ast.entity, ast.collision, entity.x, entity.y, now);
     }
+    collisions.update(entities, (x, y) => reactions.add(x, y, now));
     context.globalAlpha = 1;
+    reactions.draw(context, now);
     requestAnimationFrame(draw);
   }
   requestAnimationFrame(draw);
   return { deploy, clear, count: () => entities.length,
     targets: () => entities.slice(),
-    remove(index) { if (Number.isInteger(index) && index >= 0 && index < entities.length) entities.splice(index, 1); },
+    remove(index) {
+      if (Number.isInteger(index) && index >= 0 && index < entities.length) {
+        const entity = entities[index];
+        reactions.add(entity.x, entity.y, performance.now());
+        entities.splice(index, 1);
+      }
+    },
     react() {
       combo = Math.min(10, combo + 0.1);
       root.querySelector('[data-combo]').textContent = `×${combo.toFixed(1)}`;

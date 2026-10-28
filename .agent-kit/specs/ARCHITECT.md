@@ -1,5 +1,10 @@
 # ARCHITECT
 
+## Bổ sung us-009 (phase-02 / sprint-03)
+
+- AST whitelist gồm sáu entity `duck`, `ball`, `star`, `boss`, `doge`, `popcat`; SFX `quack`, `pop`, `laser`, `bonk`, `bruh`, `boom`, `none`. Schema chung cấp contract cho validator, local compiler và remote structured output.
+- Overlay render vector và reaction chữ cố định, tối đa 1,5 giây; animation/physics vẫn tôn trọng safe zone và panic clear. Web Audio tổng hợp trong `client/audio/sfx.js`; preset được validate. Không đổi Twitch IRC hoặc giao thức signaling. Giới hạn tài nguyên và hành vi cụ thể theo [technical plan](../memory/lead-code/refs/task-sprint-03-01-code/technical-plan.md).
+
 Trạng thái: **đề xuất kỹ thuật**, đã đồng bộ cấu trúc entry/route UI và 3 quyết định chính sách sản phẩm `r3` của PM tại [DESIGN.md](DESIGN.md). Chi tiết tại [technical plan](../memory/lead-code/refs/task-sprint-02-02-code/technical-plan.md).
 
 ## Thành phần và trách nhiệm

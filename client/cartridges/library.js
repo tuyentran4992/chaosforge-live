@@ -2,7 +2,8 @@ import { validateAst } from '../../shared/ast-validate.js';
 import { synthesize } from '../../shared/synthesize.js';
 
 const STORAGE = 'chaosforge-cartridges-v1';
-const samples = ['Rubber duck rain', 'Laser boss', 'Floating stars', '360 shield', 'Bouncing balls', 'Duck rescue'];
+const samples = ['Rubber duck rain', 'Laser boss', 'Floating stars', '360 shield', 'Bouncing balls', 'Duck rescue',
+  'Bonk Doge Hammer Storm', 'Popcat Chorus Hype'];
 
 export function createLibrary(container, onDeploy) {
   let saved = [];
@@ -21,7 +22,7 @@ export function createLibrary(container, onDeploy) {
       top.className = 'cart__top';
       const icon = document.createElement('span');
       icon.className = 'cart__ico';
-      icon.textContent = item.ast.entity === 'duck' ? '🦆' : item.ast.entity === 'boss' ? '🐱' :
+      icon.textContent = item.ast.entity === 'doge' ? '🐕' : item.ast.entity === 'popcat' ? '🐱' : item.ast.entity === 'duck' ? '🦆' : item.ast.entity === 'boss' ? '🐱' :
         item.ast.collision === 'shield' ? '🛡' : '✦';
       const id = document.createElement('span');
       id.className = 'cart__id';

@@ -9,6 +9,9 @@ PM chọn và biên tập theo [USER-DOCS](../planning/USER-DOCS.md); mỗi báo
 
 ## Kết quả và quyết định
 
+- [2026-10-28 — Nghiệm thu us-009 Meme Chaos Pack (Doge, Popcat, Meme SFX & Reaction)](reports/2026-10-28-us-009-meme-pack-accepted.md)
+- [2026-10-27 — Nghiệm thu Hoàn thành Sprint 02 (Code Delivery) — ChaosForge Live](reports/2026-10-27-sprint-02-code-completed.md)
+- [2026-10-27 — Quyết định Chính sách r3: Local Fallback, ToS Guard 4 Lớp & Hiển thị Poll OBS](reports/2026-10-27-sprint-02-r3-policy-decisions.md)
 - [2026-10-27 — Nghiệm thu Bộ Thiết kế ChaosForge Live & Mở Sprint Code](reports/2026-10-27-design-approved-sprint-02-opened.md)
 - [2026-10-27 — Chốt ý tưởng Codex Chaos Foundry & Trình duyệt Thiết kế UI](reports/2026-10-27-sprint-01-closed-idea-locked.md)
 - [2026-10-27 — Đề xuất Top 3 ý tưởng Codex x TwitchCon Hackathon](reports/2026-10-27-council-ideas.md)

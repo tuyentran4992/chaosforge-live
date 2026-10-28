@@ -1,3 +1,5 @@
+import { playMemeSound } from './meme-sfx.js';
+
 const tones = {
   quack: { frequency: 330, type: 'square' },
   pop: { frequency: 660, type: 'square' },
@@ -12,10 +14,11 @@ export function createSound(makeContext = () => new AudioContext()) {
     if (!enabled && context) context.suspend();
   }
   function play(kind) {
-    if (!enabled || !Object.hasOwn(tones, kind)) return;
+    if (!enabled || (!Object.hasOwn(tones, kind) && !['bonk', 'bruh', 'boom'].includes(kind))) return;
     try {
       context ||= makeContext();
       context.resume();
+      if (playMemeSound(context, kind)) return;
       const oscillator = context.createOscillator();
       const gain = context.createGain();
       oscillator.type = tones[kind].type;

@@ -8,7 +8,7 @@ function hashPrompt(prompt) {
 }
 
 // Clause boundary delimiter: punctuation or conjunctions.
-const CLAUSE_SPLIT = /[.;,!?]|\b(?:but|however|yet|though|although|while|except|and|nhưng|mà)\b/i;
+const CLAUSE_SPLIT = /[.;,!?]|\b(?:but|however|yet|though|although|while|except|and)\b|(?:^|\s)(?:nhưng|mà)(?=\s|$)/i;
 
 // Standalone zero-gravity phrases: unless preceded by another negative verb, these mean zero gravity.
 const ZERO_GRAV_EXPRESSION = /\b(?:no|without)\s+gravity\b|\bgravity[ -]?(?:free|off)\b|không\s+trọng\s*(?:lực|lượng)/i;
@@ -36,13 +36,16 @@ export function synthesize(prompt) {
   const hash = hashPrompt(text);
   const clauses = text.split(CLAUSE_SPLIT);
   const surviving = clauses.filter((c) => !isNegativeClause(c)).join(' ');
+  const excluded = clauses.filter(isNegativeClause).join(' ');
 
+  const hasDoge = /\b(?:doge|cheems|bonk)\b/i.test(surviving);
+  const hasPopcat = /\b(?:popcat|cat)\b|mèo/i.test(surviving);
   const hasDuck = /duck|vịt|\bvit\b|鸭|鴨|\bpato\b/i.test(surviving);
   const hasBoss = /boss|trùm/i.test(surviving);
   const hasStar = /star|ngôi sao|星/i.test(surviving);
   const hasBall = /ball|bóng/i.test(surviving);
-  const hasEntity = hasDuck || hasBoss || hasStar || hasBall;
-  const entity = hasDuck ? 'duck' : hasBoss ? 'boss' : hasStar ? 'star' : hasBall ? 'ball' : ['ball', 'star', 'duck'][hash % 3];
+  const hasEntity = hasDoge || hasPopcat || hasDuck || hasBoss || hasStar || hasBall;
+  const entity = hasDoge ? 'doge' : hasPopcat ? 'popcat' : hasDuck ? 'duck' : hasBoss ? 'boss' : hasStar ? 'star' : hasBall ? 'ball' : ['ball', 'star', 'duck'][hash % 3];
 
   const hasZeroGrav = /float|zero[ -]?gravity|__zero_grav__|không\s+trọng\s*(?:lực|lượng)/i.test(surviving) || ZERO_GRAV_EXPRESSION.test(surviving);
   const hasReverseGrav = /(?:reverse|reversed|invert|inverted|anti)[ -]*(?:the[ -]+)?gravity|gravity[ -]+(?:is[ -]+)?(?:reversed|inverted|upside[ -]+down)|upside[ -]+down[ -]+gravity|đảo\s*(?:ngược)?\s*trọng\s*lực|trọng\s*lực\s*(?:bị\s*)?đảo\s*ngược|反重力|gravedad\s+invertida/i.test(surviving);
@@ -55,10 +58,26 @@ export function synthesize(prompt) {
   const hasSilent = /silent|no sound|không âm thanh/i.test(surviving);
   const hasLaser = /laser|laze/i.test(surviving);
   const hasQuack = /quack/i.test(surviving);
-  const hasPop = /pop/i.test(surviving);
-  const hasSfx = hasSilent || hasLaser || hasQuack || hasPop;
-  const sfx = hasSilent ? 'none' : hasLaser ? 'laser' : hasQuack ? 'quack' : hasPop ? 'pop' :
-    entity === 'duck' ? 'quack' : entity === 'boss' ? 'laser' : 'pop';
+  const hasBonk = /\bbonk\b/i.test(surviving);
+  const hasBruh = /\bbruh\b/i.test(surviving);
+  const hasBoom = /\bboom\b|nổ/i.test(surviving);
+  const hasPop = /pop(?!cat)/i.test(surviving);
+  const hasSfx = hasSilent || hasBoom || hasBonk || hasBruh || hasLaser || hasQuack || hasPop;
+  const forbidden = {
+    boom: /\bboom\b|nổ/i.test(excluded), bonk: /\bbonk\b/i.test(excluded),
+    bruh: /\bbruh\b/i.test(excluded), laser: /laser|laze/i.test(excluded),
+    quack: /quack/i.test(excluded), pop: /pop(?!cat)/i.test(excluded),
+  };
+  const choices = [
+    ['boom', hasBoom], ['bonk', hasBonk], ['bruh', hasBruh], ['laser', hasLaser],
+    ['quack', hasQuack], ['pop', hasPop],
+  ];
+  const defaultSfx = entity === 'duck' ? 'quack' : entity === 'boss' ? 'laser' :
+    entity === 'doge' || entity === 'popcat' ? 'none' : 'pop';
+  const positiveSfx = choices.find(([kind, present]) => present && !forbidden[kind]);
+  const muted = hasSilent || /\bno\s+sound\b|\bwithout\s+sound\b|không\s+âm\s+thanh/i.test(excluded);
+  const sfx = muted ? 'none' : positiveSfx ? positiveSfx[0] :
+    hasSfx || forbidden[defaultSfx] ? 'none' : defaultSfx;
 
   const hasPositiveKeyword = hasEntity || hasGravity || hasShield || hasSfx;
 

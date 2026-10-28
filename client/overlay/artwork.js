@@ -1,4 +1,6 @@
-export function drawEntity(ctx, entity, collision, x, y) {
+import { drawMeme } from './meme-artwork.js';
+
+export function drawEntity(ctx, entity, collision, x, y, now = 0) {
   ctx.save();
   ctx.translate(x, y);
   if (collision === 'shield') {
@@ -8,7 +10,9 @@ export function drawEntity(ctx, entity, collision, x, y) {
     ctx.arc(0, 0, 34, 0, Math.PI * 2);
     ctx.stroke();
   }
-  if (entity === 'duck') {
+  if (entity === 'doge' || entity === 'popcat') {
+    drawMeme(ctx, entity, now);
+  } else if (entity === 'duck') {
     ctx.fillStyle = '#fbbf24';
     ctx.beginPath();
     ctx.ellipse(0, 8, 26, 17, 0, 0, Math.PI * 2);

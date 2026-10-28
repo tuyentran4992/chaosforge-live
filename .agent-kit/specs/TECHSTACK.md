@@ -1,5 +1,10 @@
 # TECHSTACK
 
+## Bổ sung kỹ thuật us-009 (phase-02 / sprint-03)
+
+- Canvas 2D vector cho `doge` và `popcat`; Web Audio tổng hợp `bonk`, `bruh`, `boom` tại `client/audio/sfx.js`, không dùng tài nguyên ngoài. Giữ mute và vòng đời audio hiện hữu.
+- AST closed-world mở rộng theo DESIGN; từ khóa local vẫn qua loại trừ mệnh đề phủ định. Reaction dùng tập chữ cố định trong 1,5 giây; hai preset phải qua validator. Chi tiết tại [technical plan](../memory/lead-code/refs/task-sprint-03-01-code/technical-plan.md). FPS và âm sắc cần kiểm trên sản phẩm thật.
+
 Trạng thái: **đề xuất kỹ thuật cho phase-02 / sprint-02**, đã đồng bộ cấu trúc 3 HTML entries và các quyết định chính sách sản phẩm `r3` của PM tại [DESIGN.md](DESIGN.md).
 
 ## Lựa chọn và phiên bản

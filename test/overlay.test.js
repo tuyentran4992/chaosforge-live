@@ -24,7 +24,8 @@ test('overlay renders full escaped poll and updates boss timer on a frame', (t) 
   Object.defineProperty(globalThis, 'document', { configurable: true, value: { createElement: () => new Element() } });
   Object.defineProperty(globalThis, 'ResizeObserver', { configurable: true, value: class { observe() {} } });
   Object.defineProperty(globalThis, 'requestAnimationFrame', { configurable: true, value: (callback) => frames.push(callback) });
-  const context = new Proxy({}, { get: () => () => {}, set: () => true });
+  const labels = [];
+  const context = new Proxy({}, { get: (_, name) => name === 'fillText' ? (label) => labels.push(label) : name === 'measureText' ? () => ({ width: 300 }) : () => {}, set: () => true });
   const canvas = { getContext: () => context };
   const nodes = new Map();
   const root = new Element();
@@ -40,7 +41,17 @@ test('overlay renders full escaped poll and updates boss timer on a frame', (t) 
   const uncertainAst = { ...duckfallback(), tags: ['synthesized', 'duck', 'uncertain'] };
   assert.equal(overlay.deploy(uncertainAst, 31000), true);
   assert.equal(nodes.get('[data-verified]').textContent, '✓ AST SAFE · DEFAULT FALLBACK');
+  const targets = overlay.targets();
+  targets.forEach((entity, index) => {
+    entity.x = 100 + (index % 10) * 150;
+    entity.y = 100 + Math.floor(index / 10) * 150;
+    entity.vx = 0;
+    entity.vy = 0;
+  });
+  targets[1].x = targets[0].x + 10;
+  targets[1].y = targets[0].y;
   frames.shift()(performance.now() + 16);
+  assert.ok(labels.includes('SKILL ISSUE!'), 'entity contact creates an overlay reaction');
   assert.equal(nodes.get('[data-boss-time]').textContent, 30);
   assert.equal(nodes.get('[data-boss-fill]').style.width, '100%');
   const ideas = ['"'.repeat(160), '\\'.repeat(160), '\u0000'.repeat(160)];
@@ -64,6 +75,11 @@ test('overlay renders full escaped poll and updates boss timer on a frame', (t) 
   assert.equal(nodes.get('[data-verified]').textContent, '✓ AST SAFE VERIFIED');
   assert.equal(overlay.count(), 0);
   assert.equal(root.dataset.state, 'idle');
+  labels.length = 0;
+  overlay.clear(true);
+  frames.shift()(performance.now() + 16);
+  assert.ok(labels.includes('RIGGED!'));
+  assert.equal(overlay.count(), 0);
 });
 
 test('broadcast poll has a bounded panel and adaptive font sizing without line clamp', () => {

@@ -4,27 +4,22 @@
  */
 window.DASHBOARD_DATA = {
   project: "ChaosForge Live (Codex × TwitchCon)",
-  updatedAt: "2026-10-28 00:30",
+  updatedAt: "2026-10-28 18:45",
 
   decisions: [
     {
-      id: "dec-007",
-      title: "Mở Sprint 03 (Release Validation & Đóng gói Bài nộp Devpost)",
-      recommendation: "Mở Sprint 03 bao gồm us-009 (Kiểm thử QA E2E & Release Checklist) và us-010 (Kịch bản Video Demo 2 phút & Bộ nội dung nộp bài Devpost). Chưa điều phối agent theo yêu cầu người dùng.",
-      impact: "Chuẩn bị đầy đủ tài liệu chất lượng cao để nộp bài trước hạn 02/11/2026 2:00 PM PST.",
-      link: "../../specs/roadmap/phase-02/sprints/sprint-03/SPRINT.md"
+      id: "dec-008",
+      title: "Nghiệm thu us-009 Meme Chaos Pack & Chốt chính sách CR-02, CR-03",
+      recommendation: "Chấp thuận arcade hit chỉ kích hoạt reaction local trên stage; chấp thuận cơ chế debounce burst coalescing cho reaction neon; chính thức nghiệm thu đạt us-009.",
+      impact: "Meme Chaos Pack hoàn tất 100% với 45/45 test pass, sẵn sàng chuyển giao cho QA kiểm thử E2E (us-010).",
+      link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-009.md"
     }
   ],
 
   newThings: [
     {
-      title: "Đã khắc phục hoàn toàn 2 feedback UX (Bypass Unikey cho WASD, chống cuộn trang, nút Disconnect)",
-      howToTry: "F5 lại trang http://127.0.0.1:3000 để lái tàu bằng WASD mượt mà và thử kết nối/ngắt kết nối Twitch.",
-      link: "../../specs/roadmap/phase-02/sprints/sprint-02/SPRINT.md"
-    },
-    {
-      title: "Đã bổ sung User Story Meme Chaos Pack (us-009) vào Sprint 03",
-      howToTry: "Xem chi tiết mục tiêu Meme Chaos Pack tại us-009.md (Bonk Doge, Popcat, Meme SFX, Floating Badges).",
+      title: "Meme Chaos Pack đã sẵn sàng (Bonk Doge, Popcat, Meme SFX & Reaction neon)",
+      howToTry: "Vào http://127.0.0.1:3000, gõ prompt '!forge bonk doge storm with boom sound' hoặc '!forge popcat', xem vector hoạt họa và chữ nổi reaction khi va chạm/Spacebar Panic.",
       link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-009.md"
     }
   ],
@@ -131,13 +126,13 @@ window.DASHBOARD_DATA = {
             {
               id: "us-009",
               title: "Meme Chaos Pack: Thêm Thực thể Meme (Bonk Doge, Popcat), Âm thanh Troll & Chữ Nổi Reaction",
-              status: "todo",
+              status: "accepted",
               link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-009.md"
             },
             {
               id: "us-010",
               title: "Kiểm thử E2E QA, Release Checklist & Xác minh Môi trường Sạch",
-              status: "todo",
+              status: "waived",
               link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-010.md"
             },
             {
@@ -157,6 +152,11 @@ window.DASHBOARD_DATA = {
   backlog: [],
 
   reports: [
+    {
+      date: "2026-10-28",
+      title: "Nghiệm thu us-009 Meme Chaos Pack (Doge, Popcat, Meme SFX & Reaction)",
+      link: "../reports/2026-10-28-us-009-meme-pack-accepted.md"
+    },
     {
       date: "2026-10-27",
       title: "Nghiệm thu Hoàn thành Sprint 02 (Code Delivery) — ChaosForge Live",
@@ -186,13 +186,13 @@ window.DASHBOARD_DATA = {
 
   agents: {
     "pm": {
-      status: "idle",
-      task: "Đã cập nhật Sprint 03 với 3 stories (us-009 Meme Pack, us-010 QA, us-011 Devpost)",
-      link: "../../specs/roadmap/phase-02/sprints/sprint-03/SPRINT.md"
+      status: "active",
+      task: "Đã nghiệm thu us-009 Meme Chaos Pack; chuẩn bị kích hoạt QA cho us-010",
+      link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-010.md"
     },
     "lead-code": {
       status: "idle",
-      task: "Sẵn sàng nhận handoff us-009 (Meme Chaos Pack)",
+      task: "Đã hoàn thành bàn giao us-009 (45/45 test pass, 76 file ≤ 250 dòng)",
       link: "../../specs/roadmap/phase-02/sprints/sprint-03/stories/us-009.md"
     }
   }

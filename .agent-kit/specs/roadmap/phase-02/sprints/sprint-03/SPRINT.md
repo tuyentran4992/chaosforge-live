@@ -27,8 +27,8 @@ Phụ thuộc sprint/điều kiện đầu vào: Đã hoàn tất và nghiệm t
 
 | Story | Thứ tự | Required trong sprint | Phụ thuộc | Trạng thái |
 | --- | --- | --- | --- | --- |
-| [us-009 — Meme Chaos Pack: Thêm Thực thể Meme (Bonk Doge, Popcat), Âm thanh Troll & Chữ Nổi Reaction](stories/us-009.md) | 1 | Required | Đã duyệt [sprint-02](../sprint-02/SPRINT.md) | `todo` |
-| [us-010 — Kiểm thử E2E QA, Release Checklist & Xác minh Môi trường Sạch](stories/us-010.md) | 2 | Required | Phụ thuộc [us-009](stories/us-009.md) | `todo` |
+| [us-009 — Meme Chaos Pack: Thêm Thực thể Meme (Bonk Doge, Popcat), Âm thanh Troll & Chữ Nổi Reaction](stories/us-009.md) | 1 | Required | Đã duyệt [sprint-02](../sprint-02/SPRINT.md) | `accepted` |
+| [us-010 — Kiểm thử E2E QA, Release Checklist & Xác minh Môi trường Sạch](stories/us-010.md) | 2 | Waived (User decision) | Phụ thuộc [us-009](stories/us-009.md) | `waived` |
 | [us-011 — Kịch bản Video Demo 2 Phút & Bộ Nội dung Nộp bài Devpost Hoàn chỉnh](stories/us-011.md) | 3 | Required | Phụ thuộc [us-009](stories/us-009.md), [us-010](stories/us-010.md) | `todo` |
 
 ## Acceptance tích hợp riêng

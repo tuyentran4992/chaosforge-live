@@ -11,7 +11,7 @@ export function spawnParticle(side, random = Math.random) {
   return { x, y, vx: (random() - 0.5) * 180, vy: (random() - 0.5) * 180 };
 }
 
-export function advanceParticle(particle, ast, delta) {
+export function advanceParticle(particle, ast, delta, onCollision = () => {}) {
   particle.vy += ast.gravity * delta * 80;
   particle.x += particle.vx * delta;
   particle.y += particle.vy * delta;
@@ -22,6 +22,7 @@ export function advanceParticle(particle, ast, delta) {
     if (particle.y > HEIGHT) particle.y -= HEIGHT;
   } else {
     const damping = ast.collision === 'shield' ? 0.8 : 1;
+    if (particle.x < 0 || particle.x > WIDTH || particle.y < 0 || particle.y > HEIGHT) onCollision(particle);
     if (particle.x < 0 || particle.x > WIDTH) particle.vx *= -damping;
     if (particle.y < 0 || particle.y > HEIGHT) particle.vy *= -damping;
     particle.x = Math.max(0, Math.min(WIDTH, particle.x));
